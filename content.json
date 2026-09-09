@@ -2,22 +2,20 @@
   "site": {
     "name": "DANGOTE IPO DECODED™",
     "shortName": "IPO DECODED™",
-    "type": "Practical Nigerian Financial Education",
+    "type": "Premium Financial Education",
     "language": "en-NG",
     "currency": "NGN"
   },
 
   "seo": {
     "title": "DANGOTE IPO DECODED™ | Understand. Verify. Evaluate. Prepare.",
-    "description": "The practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO.",
+    "description": "A practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO.",
     "keywords": [
       "Dangote IPO",
       "Dangote Refinery IPO",
       "Nigeria IPO",
-      "Nigerian investing education",
       "IPO guide Nigeria",
-      "stock market Nigeria",
-      "financial education Nigeria"
+      "Nigerian investing education"
     ]
   },
 
@@ -26,515 +24,363 @@
     "url": "YOUR_ACTUAL_SELAR_CHECKOUT_URL"
   },
 
-  "hero": {
-    "eyebrow": "THE PRACTICAL NIGERIAN IPO GUIDE",
-    "title": "Understand the offer before you decide what to do with it.",
-    "subtitle": "DANGOTE IPO DECODED™",
-    "description": "A practical, beginner-friendly guide to understanding the Dangote Refinery IPO, verifying information, evaluating the business and offer, understanding the risks, and preparing to make an informed independent decision.",
-    "primaryCTA": "Get the Book",
-    "secondaryCTA": "See What You'll Learn"
-  },
-
-  "trustStrip": [
-    {
-      "icon": "✓",
-      "text": "Education-first"
-    },
-    {
-      "icon": "✓",
-      "text": "Evidence over hype"
-    },
-    {
-      "icon": "✓",
-      "text": "Nigerian context"
-    },
-    {
-      "icon": "✓",
-      "text": "Practical tools"
-    },
-    {
-      "icon": "✓",
-      "text": "No guaranteed returns"
-    }
-  ],
-
-  "bookshelf": {
-    "eyebrow": "THE BOOKSHELF",
-    "title": "Learn before you decide.",
-    "description": "Explore the practical financial-education guides in the collection."
-  },
-
-  "books": [
-    {
-      "id": "dangote-ipo-decoded",
-      "featured": true,
-      "available": true,
-      "badge": "FLAGSHIP GUIDE",
-      "eyebrow": "BOOK 01",
-      "title": "DANGOTE IPO DECODED™",
-      "subtitle": "The Practical Nigerian Guide to Understanding, Evaluating & Preparing for the Dangote Refinery IPO",
-      "description": "A structured guide that takes you from IPO basics to offer evaluation, risk awareness, subscription preparation, allotment, ownership and post-IPO monitoring.",
-      "mockup": "assets/book-mockup.png",
-      "mockupAlt": "DANGOTE IPO DECODED book cover mockup",
-      "price": "See current price",
-      "buttonText": "Get the Book",
-      "checkout": "YOUR_ACTUAL_SELAR_CHECKOUT_URL"
-    },
-    {
-      "id": "second-book",
-      "featured": false,
-      "available": false,
-      "badge": "COMING SOON",
-      "eyebrow": "BOOK 02",
-      "title": "SECOND BOOK TITLE",
-      "subtitle": "Your next practical financial-education guide",
-      "description": "This space is reserved for the next title in the collection.",
-      "mockup": "assets/second-book-mockup.png",
-      "mockupAlt": "Second book cover mockup",
-      "price": "",
-      "buttonText": "Coming Soon",
-      "checkout": "#"
-    }
-  ],
-
-  "problem": {
-    "eyebrow": "THE PROBLEM",
-    "title": "An IPO can look simple until you actually try to understand it.",
-    "description": "The information may be available, but it can be fragmented across technical documents, announcements, commentary and social media. The challenge is knowing what matters, what is verified, and how the pieces fit together.",
-    "points": [
-      {
-        "icon": "?",
-        "title": "Too much information",
-        "text": "Important information can be spread across prospectuses, announcements, financial statements and other sources."
-      },
-      {
-        "icon": "?",
-        "title": "Too much jargon",
-        "text": "Terms such as offer price, allotment, dilution, valuation and subscription can make the process feel harder than it needs to be."
-      },
-      {
-        "icon": "?",
-        "title": "Too much noise",
-        "text": "Social media commentary, repeated claims and market excitement are not substitutes for verification and analysis."
-      },
-      {
-        "icon": "?",
-        "title": "Too many unanswered questions",
-        "text": "What are you actually buying? What does it cost? What are the risks? How does subscription work? What happens after allotment?"
-      }
-    ]
-  },
-
-  "promise": {
-    "eyebrow": "THE PROMISE",
-    "title": "Clarity without the hype.",
-    "description": "This book is designed to help you build understanding and judgment—not to tell you what decision to make.",
-    "points": [
-      "Understand IPO terminology in plain language.",
-      "Identify and verify authoritative information.",
-      "Understand what shares represent and what ownership means.",
-      "Read an offer document with a structured framework.",
-      "Evaluate the business, financials, valuation and risks.",
-      "Understand subscription, allotment and ownership mechanics.",
-      "Prepare the questions and calculations that matter.",
-      "Recognize behavioral traps such as FOMO and herd behavior.",
-      "Separate facts from interpretations, examples and scenarios.",
-      "Reach an informed independent judgment."
-    ]
-  },
-
-  "decisionFlow": {
-    "eyebrow": "THE FRAMEWORK",
-    "title": "Seven steps from information to informed judgment.",
-    "description": "The book follows a practical sequence designed to reduce confusion and improve decision quality.",
-    "steps": [
-      {
-        "number": "01",
-        "title": "Understand",
-        "text": "Learn the language, structure and mechanics of an IPO."
-      },
-      {
-        "number": "02",
-        "title": "Verify",
-        "text": "Identify authoritative sources and distinguish verified information from noise."
-      },
-      {
-        "number": "03",
-        "title": "Evaluate",
-        "text": "Examine the business, financials, valuation and relevant risks."
-      },
-      {
-        "number": "04",
-        "title": "Calculate",
-        "text": "Understand the numbers behind subscription costs, shares and possible allocation."
-      },
-      {
-        "number": "05",
-        "title": "Prepare",
-        "text": "Know the process, documents, questions and practical requirements."
-      },
-      {
-        "number": "06",
-        "title": "Decide",
-        "text": "Apply the framework to your own circumstances and judgment."
-      },
-      {
-        "number": "07",
-        "title": "Monitor",
-        "text": "Understand what ownership means and what to watch after listing."
-      }
-    ]
-  },
-
-  "decisionOS": {
-    "eyebrow": "THE DECISION OS",
-    "title": "A mental model you can use beyond this IPO.",
-    "description": "The Dangote Refinery IPO is the real-world case study. The underlying framework is designed to strengthen broader financial literacy.",
-    "items": [
-      {
-        "number": "01",
-        "title": "IPO",
-        "text": "Understand what an initial public offering actually is."
-      },
-      {
-        "number": "02",
-        "title": "Offer",
-        "text": "Understand what is being offered, at what terms and under what conditions."
-      },
-      {
-        "number": "03",
-        "title": "Business",
-        "text": "Understand the company, its operations, markets, customers and competitive position."
-      },
-      {
-        "number": "04",
-        "title": "Financials",
-        "text": "Learn how to examine revenue, profitability, assets, liabilities, debt and cash flow."
-      },
-      {
-        "number": "05",
-        "title": "Valuation",
-        "text": "Learn why price and value are related but not identical concepts."
-      },
-      {
-        "number": "06",
-        "title": "Risks",
-        "text": "Identify operating, regulatory, execution, financing, market and behavioral risks."
-      },
-      {
-        "number": "07",
-        "title": "Subscription",
-        "text": "Understand the practical mechanics of participating in an offer."
-      },
-      {
-        "number": "08",
-        "title": "Allotment",
-        "text": "Understand what happens when demand exceeds available shares."
-      },
-      {
-        "number": "09",
-        "title": "Ownership",
-        "text": "Understand what becoming a shareholder actually means."
-      },
-      {
-        "number": "10",
-        "title": "Monitoring",
-        "text": "Know what information matters after the company becomes publicly traded."
-      }
-    ]
-  },
-
-  "learning": {
-    "eyebrow": "WHAT YOU'LL LEARN",
-    "title": "Built for the person who wants the explanation—not the noise.",
-    "description": "The guide translates technical IPO concepts into practical Nigerian financial education.",
-    "items": [
-      {
-        "icon": "01",
-        "title": "IPO fundamentals",
-        "text": "Understand IPOs, primary and secondary markets, public companies, issuers, investors and capital raising."
-      },
-      {
-        "icon": "02",
-        "title": "Shares & ownership",
-        "text": "Understand equity, shares, shareholder ownership, dilution and what owning shares represents."
-      },
-      {
-        "icon": "03",
-        "title": "The business",
-        "text": "Learn how to examine business models, operations, markets, industry conditions and competition."
-      },
-      {
-        "icon": "04",
-        "title": "Financial health",
-        "text": "Understand revenue, profit, assets, liabilities, debt, cash flow, capital expenditure and financing."
-      },
-      {
-        "icon": "05",
-        "title": "Valuation",
-        "text": "Learn the basic ideas behind valuation and why a business can be valuable without every price being attractive."
-      },
-      {
-        "icon": "06",
-        "title": "Risk",
-        "text": "Build awareness of operating, regulatory, execution, financing, market, liquidity and behavioral risks."
-      },
-      {
-        "icon": "07",
-        "title": "Subscription",
-        "text": "Understand eligibility, KYC, BVN, CSCS, payment, subscription periods, oversubscription and allotment."
-      },
-      {
-        "icon": "08",
-        "title": "Post-IPO ownership",
-        "text": "Understand listing, trading, shareholder ownership and the importance of ongoing monitoring."
-      }
-    ]
-  },
-
-  "toolkit": {
-    "eyebrow": "THE PRACTICAL TOOLKIT",
-    "title": "Not just something to read. Something to use.",
-    "description": "The guide includes practical frameworks designed to turn information into structured evaluation.",
-    "items": [
-      {
-        "title": "Readiness checklist",
-        "text": "A structured way to assess whether you understand the basics before participating."
-      },
-      {
-        "title": "Prospectus-reading framework",
-        "text": "A practical approach to navigating an offer document."
-      },
-      {
-        "title": "Source-verification checklist",
-        "text": "A framework for checking where information comes from and when it was published."
-      },
-      {
-        "title": "Subscription-cost calculations",
-        "text": "Understand how to calculate the amount associated with a subscription."
-      },
-      {
-        "title": "Allocation framework",
-        "text": "Understand the basic logic behind allotment, including oversubscription."
-      },
-      {
-        "title": "Evaluation scorecard",
-        "text": "Organize your thinking across business quality, financials, valuation and risks."
-      },
-      {
-        "title": "Risk framework",
-        "text": "Separate different categories of risk instead of treating risk as one vague idea."
-      },
-      {
-        "title": "Decision framework",
-        "text": "Bring the evidence together before reaching your own conclusion."
-      },
-      {
-        "title": "Glossary",
-        "text": "Plain-language explanations of important IPO and financial terms."
-      },
-      {
-        "title": "Post-IPO monitoring",
-        "text": "Know what information can remain relevant after listing."
-      }
-    ]
-  },
-
-  "preview": {
-    "eyebrow": "INSIDE THE BOOK",
-    "title": "A preview of the learning experience.",
-    "description": "The final preview pages can be connected here as image assets.",
-    "items": [
-      {
-        "label": "PREVIEW 01",
-        "title": "Understand the language",
-        "text": "Start with the concepts that make the rest of the IPO easier to understand.",
-        "image": "assets/preview-01.png",
-        "alt": "Preview page showing IPO terminology"
-      },
-      {
-        "label": "PREVIEW 02",
-        "title": "Ask better questions",
-        "text": "Move from passive information consumption to structured evaluation.",
-        "image": "assets/preview-02.png",
-        "alt": "Preview page showing evaluation questions"
-      },
-      {
-        "label": "PREVIEW 03",
-        "title": "Separate fact from interpretation",
-        "text": "Learn to distinguish verified information from opinions, examples and scenarios.",
-        "image": "assets/preview-03.png",
-        "alt": "Preview page showing fact and interpretation framework"
-      },
-      {
-        "label": "PREVIEW 04",
-        "title": "Prepare deliberately",
-        "text": "Use checklists, calculations and frameworks before reaching your own decision.",
-        "image": "assets/preview-04.png",
-        "alt": "Preview page showing IPO preparation checklist"
-      }
-    ]
-  },
-
-  "audience": {
-    "eyebrow": "WHO IT'S FOR",
-    "title": "For Nigerians who want to understand—not simply follow.",
-    "description": "You do not need to be a professional investor to benefit from a structured explanation.",
-    "items": [
-      {
-        "icon": "✓",
-        "title": "IPO beginners",
-        "text": "You are encountering an IPO and want to understand how it works."
-      },
-      {
-        "icon": "✓",
-        "title": "First-time participants",
-        "text": "You want to understand the process before deciding whether to participate."
-      },
-      {
-        "icon": "✓",
-        "title": "Financial learners",
-        "text": "You want practical exposure to shares, financial statements, valuation and risk."
-      },
-      {
-        "icon": "✓",
-        "title": "Curious Nigerians",
-        "text": "You keep hearing about the Dangote Refinery IPO and want a structured way to make sense of it."
-      },
-      {
-        "icon": "✓",
-        "title": "Independent thinkers",
-        "text": "You want a framework for evaluating information rather than relying on social pressure or hype."
-      }
-    ]
-  },
-
-  "philosophy": {
-    "eyebrow": "THE PHILOSOPHY",
-    "title": "Evidence over hype.",
-    "description": "The goal is not to create excitement around an IPO. The goal is to improve the quality of the reader's understanding and judgment.",
-    "points": [
-      "Evidence over hype.",
-      "Verification over rumors.",
-      "Understanding over excitement.",
-      "Questions over assumptions.",
-      "Risk awareness over guarantees.",
-      "Independent thinking over herd behavior.",
-      "Preparation over impulsive action."
-    ]
-  },
-
-  "whyThisBook": {
-    "eyebrow": "WHY THIS BOOK",
-    "title": "One case study. One practical framework.",
-    "description": "The Dangote Refinery IPO provides the real-world context. The underlying lessons are broader.",
-    "points": [
-      {
-        "title": "Official information, explained plainly",
-        "text": "The framework is designed to connect authoritative information with plain-language interpretation."
-      },
-      {
-        "title": "Built for the Nigerian reader",
-        "text": "The guide keeps Nigerian IPO mechanics, terminology and practical realities at the centre."
-      },
-      {
-        "title": "Financial education, not promotional copy",
-        "text": "The book is designed to teach concepts and improve decision quality rather than push a particular outcome."
-      },
-      {
-        "title": "Practical from beginning to end",
-        "text": "Concepts are connected to checklists, calculations, evaluation frameworks and preparation tools."
-      },
-      {
-        "title": "Behavior matters",
-        "text": "FOMO, herd behavior, confirmation bias, anchoring and overconfidence can affect financial judgment."
-      },
-      {
-        "title": "Designed for independent judgment",
-        "text": "The final decision remains with the reader and their own circumstances."
-      }
-    ]
-  },
-
-  "about": {
-    "eyebrow": "ABOUT THE GUIDE",
-    "title": "A financial-education resource built around one simple principle.",
-    "description": "Understand the offer before you decide what to do with it. DANGOTE IPO DECODED™ combines IPO education, Nigerian context, business evaluation, valuation education, risk awareness, practical calculations, behavioral awareness and preparation tools into one structured learning experience.",
-    "image": "",
-    "imageAlt": ""
-  },
-
-  "faq": {
-    "eyebrow": "FAQ",
-    "title": "Questions you may have.",
-    "description": "A few important things to know before getting the guide.",
-    "items": [
-      {
-        "question": "Is this book telling me whether I should buy the IPO?",
-        "answer": "No. The guide is designed for financial education, evaluation and preparation. It does not provide individualized buy, sell or participation recommendations."
-      },
-      {
-        "question": "Is this only for experienced investors?",
-        "answer": "No. The book is specifically designed to make IPO concepts accessible to beginners while still providing practical evaluation frameworks."
-      },
-      {
-        "question": "What will I learn about the Dangote Refinery IPO?",
-        "answer": "The guide uses the Dangote Refinery IPO as a real-world case study for understanding IPO structure, offer information, business evaluation, financials, valuation, risks, subscription, allotment, ownership and monitoring."
-      },
-      {
-        "question": "Will the book guarantee returns or allocation?",
-        "answer": "No. No return, allocation, price appreciation or financial outcome is guaranteed."
-      },
-      {
-        "question": "Does the book explain IPO terminology?",
-        "answer": "Yes. It covers important terms relating to IPOs, shares, ownership, markets, financial statements, valuation, subscription, allotment and post-IPO ownership."
-      },
-      {
-        "question": "Does it include practical tools?",
-        "answer": "Yes. The framework includes checklists, calculations, evaluation tools, a glossary, questions and preparation frameworks."
-      },
-      {
-        "question": "What if official IPO information changes?",
-        "answer": "Time-sensitive information should always be checked against the relevant current authoritative source. The book's framework is designed to remain useful even when live offer details change."
-      },
-      {
-        "question": "Where do I get the book?",
-        "answer": "The purchase button connects to the official Selar checkout configured for the book."
-      }
-    ]
-  },
-
-  "purchase": {
-    "eyebrow": "READY TO UNDERSTAND IT?",
-    "title": "Don't let the noise make the decision for you.",
-    "description": "Build the knowledge, questions and framework you need to evaluate an IPO for yourself.",
-    "buttonText": "Get DANGOTE IPO DECODED™"
-  },
-
-  "disclaimer": {
-    "text": "DANGOTE IPO DECODED™ is an educational resource and is not individualized financial, investment, legal or tax advice. It does not guarantee returns, allocation, share-price appreciation, wealth, financial freedom or any particular outcome. Readers should verify current offer information against authoritative sources and make independent decisions based on their own circumstances."
-  },
-
-  "footer": {
-    "text": "Understand. Verify. Evaluate. Prepare.",
-    "copyright": "© 2026 DANGOTE IPO DECODED™. All rights reserved.",
+  "navigation": {
     "links": [
       {
-        "label": "Home",
-        "url": "#top"
+        "label": "Books",
+        "target": "#books"
       },
       {
-        "label": "What You'll Learn",
-        "url": "#learning"
-      },
-      {
-        "label": "Toolkit",
-        "url": "#toolkit"
+        "label": "About",
+        "target": "#about"
       },
       {
         "label": "FAQ",
-        "url": "#faq"
+        "target": "#faq"
+      }
+    ],
+
+    "primaryAction": {
+      "label": "Get the Book",
+      "target": "checkout"
+    }
+  },
+
+  "hero": {
+
+    "eyebrow": "FLAGSHIP GUIDE",
+
+    "title": "DANGOTE IPO DECODED™",
+
+    "subtitle": "Understand the offer before you decide what to do with it.",
+
+    "meta": [
+      "PRACTICAL NIGERIAN GUIDE",
+      "FINANCIAL EDUCATION",
+      "2026 EDITION"
+    ],
+
+    "description": "Understand. Verify. Evaluate. Prepare.",
+
+    "primaryCTA": "Get the Book",
+
+    "secondaryCTA": "View Details",
+
+    "book": {
+      "image": "assets/book-mockup.png",
+      "alt": "DANGOTE IPO DECODED book cover"
+    }
+
+  },
+
+  "bookshelf": {
+
+    "eyebrow": "THE COLLECTION",
+
+    "title": "Practical financial education.",
+
+    "books": [
+
+      {
+        "id": "dangote-ipo-decoded",
+
+        "status": "available",
+
+        "featured": true,
+
+        "badge": "FLAGSHIP",
+
+        "number": "01",
+
+        "title": "DANGOTE IPO DECODED™",
+
+        "shortDescription":
+          "The practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO.",
+
+        "cover":
+          "assets/book-mockup.png",
+
+        "price":
+          "See current price",
+
+        "cta":
+          "Get the Book",
+
+        "checkout":
+          "YOUR_ACTUAL_SELAR_CHECKOUT_URL",
+
+        "tags": [
+          "IPO",
+          "Nigeria",
+          "Financial Education"
+        ]
+      },
+
+      {
+        "id": "second-book",
+
+        "status": "coming-soon",
+
+        "featured": false,
+
+        "badge": "COMING SOON",
+
+        "number": "02",
+
+        "title": "SECOND BOOK TITLE",
+
+        "shortDescription":
+          "The next practical financial-education guide.",
+
+        "cover":
+          "assets/second-book-mockup.png",
+
+        "cta":
+          "Coming Soon",
+
+        "checkout":
+          "#",
+
+        "tags": []
+      }
+
+    ]
+
+  },
+
+  "quickFacts": [
+
+    {
+      "label": "FORMAT",
+      "value": "Digital Book"
+    },
+
+    {
+      "label": "AUDIENCE",
+      "value": "Nigerian Readers"
+    },
+
+    {
+      "label": "FOCUS",
+      "value": "IPO Education"
+    },
+
+    {
+      "label": "APPROACH",
+      "value": "Evidence First"
+    }
+
+  ],
+
+  "coreFramework": {
+
+    "eyebrow": "THE FRAMEWORK",
+
+    "title": "Seven steps.",
+
+    "steps": [
+      "Understand",
+      "Verify",
+      "Evaluate",
+      "Calculate",
+      "Prepare",
+      "Decide",
+      "Monitor"
+    ]
+
+  },
+
+  "inside": {
+
+    "eyebrow": "INSIDE THE BOOK",
+
+    "title": "What you'll actually learn.",
+
+    "items": [
+
+      {
+        "number": "01",
+        "title": "IPO Fundamentals",
+        "text": "Understand the language and mechanics of an IPO."
+      },
+
+      {
+        "number": "02",
+        "title": "Shares & Ownership",
+        "text": "Understand what owning shares actually means."
+      },
+
+      {
+        "number": "03",
+        "title": "Business & Financials",
+        "text": "Learn how to examine the business and its financial health."
+      },
+
+      {
+        "number": "04",
+        "title": "Valuation",
+        "text": "Understand price, value and the basic logic behind valuation."
+      },
+
+      {
+        "number": "05",
+        "title": "Risk",
+        "text": "Identify the risks that can affect an investment decision."
+      },
+
+      {
+        "number": "06",
+        "title": "Subscription & Allotment",
+        "text": "Understand the practical mechanics of participating."
+      },
+
+      {
+        "number": "07",
+        "title": "Decision Framework",
+        "text": "Bring the evidence together before reaching your own judgment."
+      },
+
+      {
+        "number": "08",
+        "title": "Post-IPO Monitoring",
+        "text": "Understand what matters after a company becomes publicly traded."
+      }
+
+    ]
+
+  },
+
+  "toolkit": {
+
+    "eyebrow": "INCLUDED",
+
+    "title": "Practical tools.",
+
+    "items": [
+      "Readiness checklist",
+      "Prospectus-reading framework",
+      "Source-verification checklist",
+      "Subscription calculations",
+      "Allocation framework",
+      "Evaluation scorecard",
+      "Risk framework",
+      "Decision framework",
+      "Glossary",
+      "Post-IPO monitoring framework"
+    ]
+
+  },
+
+  "philosophy": {
+
+    "eyebrow": "THE PRINCIPLE",
+
+    "statement": "Evidence over hype.",
+
+    "supportingLine":
+      "Understand the offer before you decide what to do with it."
+
+  },
+
+  "preview": {
+
+    "eyebrow": "PREVIEW",
+
+    "title": "Inside the guide.",
+
+    "items": [
+      {
+        "image": "assets/preview-01.png",
+        "label": "PREVIEW 01"
+      },
+      {
+        "image": "assets/preview-02.png",
+        "label": "PREVIEW 02"
+      },
+      {
+        "image": "assets/preview-03.png",
+        "label": "PREVIEW 03"
       }
     ]
+
+  },
+
+  "about": {
+
+    "eyebrow": "ABOUT",
+
+    "title": "Financial education without the hype.",
+
+    "text":
+      "DANGOTE IPO DECODED™ is designed to help readers understand IPOs, evaluate information and build independent judgment.",
+
+    "principles": [
+      "Evidence over hype",
+      "Verification over rumors",
+      "Understanding over excitement",
+      "Independent judgment over herd behavior"
+    ]
+
+  },
+
+  "faq": {
+
+    "eyebrow": "FAQ",
+
+    "title": "Before you buy.",
+
+    "items": [
+
+      {
+        "question": "Is this investment advice?",
+        "answer":
+          "No. It is an educational resource and does not provide individualized investment recommendations."
+      },
+
+      {
+        "question": "Is it suitable for beginners?",
+        "answer":
+          "Yes. The guide explains IPO concepts in practical language while providing structured evaluation frameworks."
+      },
+
+      {
+        "question": "Does it guarantee returns or allocation?",
+        "answer":
+          "No. No return, allocation or financial outcome is guaranteed."
+      },
+
+      {
+        "question": "Where do I get the book?",
+        "answer":
+          "The Get the Book button connects to the configured Selar checkout."
+      }
+
+    ]
+
+  },
+
+  "purchase": {
+
+    "eyebrow": "GET THE GUIDE",
+
+    "title": "Understand before you decide.",
+
+    "button":
+      "Get DANGOTE IPO DECODED™"
+
+  },
+
+  "disclaimer":
+    "DANGOTE IPO DECODED™ is an educational resource and is not individualized financial, investment, legal or tax advice. Readers should verify current information against authoritative sources.",
+
+  "footer": {
+
+    "tagline":
+      "Understand. Verify. Evaluate. Prepare.",
+
+    "copyright":
+      "© 2026 DANGOTE IPO DECODED™. All rights reserved."
+
   }
+
 }

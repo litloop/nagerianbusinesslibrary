@@ -1,28 +1,20 @@
 {
   "site": {
-    "name": "Nigerian Business Library",
-    "shortName": "NBL",
-    "displayName": "Naija Biz Library",
-    "type": "Premium Nigerian Business Education",
+    "name": "DANGOTE IPO DECODED™",
+    "shortName": "IPO DECODED™",
+    "type": "Digital Books",
     "language": "en-NG",
-    "currency": "NGN",
-    "positioning": "A practical library of business, behavioral, platform and monetization intelligence."
+    "currency": "NGN"
   },
 
   "seo": {
-    "title": "Naija Biz Library | Nigerian Business Intelligence",
-    "description": "A practical Nigerian business library covering behavioral platform architecture, consumer psychology, monetization, digital business systems and strategic growth.",
+    "title": "DANGOTE IPO DECODED™",
+    "description": "Practical digital books for understanding business, money and opportunities.",
     "keywords": [
-      "Nigerian business",
-      "business psychology",
-      "behavioral economics",
-      "platform strategy",
-      "neuromarketing",
-      "consumer psychology",
-      "monetization",
-      "digital business Nigeria",
-      "affiliate marketing",
-      "platform architecture"
+      "Nigerian business books",
+      "digital business books",
+      "financial education",
+      "Nigeria"
     ]
   },
 
@@ -34,16 +26,8 @@
   "navigation": {
     "links": [
       {
-        "label": "Library",
+        "label": "Books",
         "target": "#books"
-      },
-      {
-        "label": "Levels",
-        "target": "#levels"
-      },
-      {
-        "label": "Frameworks",
-        "target": "#frameworks"
       },
       {
         "label": "About",
@@ -52,426 +36,29 @@
     ],
 
     "primaryAction": {
-      "label": "Explore Library",
+      "label": "Shop Now",
       "target": "#books"
     }
   },
 
   "hero": {
+    "eyebrow": "DIGITAL EDITIONS",
 
-    "eyebrow": "NIGERIAN BUSINESS LIBRARY",
+    "title": "Books worth opening.",
 
-    "title": "Naija Biz Library",
+    "subtitle": "Practical ideas for understanding money, business and opportunity.",
 
-    "subtitle": "Business intelligence, decoded for the way Nigerians actually build.",
+    "primaryCTA": "Shop the Books",
 
-    "description": "A growing collection of practical books on behavioral platform architecture, consumer psychology, monetization, digital systems and strategic business thinking.",
-
-    "meta": [
-      "NIGERIAN BUSINESS INTELLIGENCE",
-      "PRACTICAL FRAMEWORKS",
-      "2026 COLLECTION"
-    ],
-
-    "primaryCTA": "Explore the Library",
-
-    "secondaryCTA": "View Levels",
-
-    "visual": {
-      "type": "library",
-      "image": "assets/library-hero.png",
-      "alt": "Naija Biz Library digital business book collection"
-    }
-  },
-
-  "libraryIntro": {
-
-    "eyebrow": "THE LIBRARY",
-
-    "title": "Different books. Different levels of thinking.",
-
-    "text": "Naija Biz Library is structured as a collection rather than a single course. Each book examines a different layer of how modern businesses attract attention, influence decisions, create value, build platforms, retain users and generate revenue.",
-
-    "principles": [
-      "Understand the behavior.",
-      "Understand the system.",
-      "Understand the economics.",
-      "Build with intention.",
-      "Measure what actually works."
-    ]
-  },
-
-  "levels": {
-
-    "eyebrow": "THE LEVELS",
-
-    "title": "From behavior to business architecture.",
-
-    "items": [
-
-      {
-        "number": "01",
-        "name": "THE HUMAN LEVEL",
-        "shortName": "Human Behavior",
-        "description": "Understand the psychological principles that influence attention, perception, decision-making and action.",
-        "topics": [
-          "FOMO",
-          "Loss Aversion",
-          "Present Bias",
-          "Anchoring Bias",
-          "Endowment Effect",
-          "Social Proof",
-          "Scarcity",
-          "Framing Effects"
-        ]
-      },
-
-      {
-        "number": "02",
-        "name": "THE PLATFORM LEVEL",
-        "shortName": "Behavioral Platform Architecture",
-        "description": "Learn how behavioral principles can be translated into transparent product, UX and platform systems.",
-        "topics": [
-          "Choice Architecture",
-          "Reward Loops",
-          "Progress Systems",
-          "Gamification",
-          "Personalization",
-          "Trust Architecture",
-          "User Journey Design",
-          "Feedback Systems"
-        ]
-      },
-
-      {
-        "number": "03",
-        "name": "THE CONVERSION LEVEL",
-        "shortName": "Attention to Action",
-        "description": "Understand how platforms move people from discovery to meaningful action without relying on empty hype.",
-        "topics": [
-          "Value Proposition",
-          "Landing Page Architecture",
-          "Offer Framing",
-          "Social Proof",
-          "Trust Signals",
-          "Call-to-Action Design",
-          "Friction Reduction",
-          "Decision Architecture"
-        ]
-      },
-
-      {
-        "number": "04",
-        "name": "THE RETENTION LEVEL",
-        "shortName": "Engagement Systems",
-        "description": "Explore the systems that encourage users to return because the platform continues to provide genuine value.",
-        "topics": [
-          "Habit Formation",
-          "Progress Effects",
-          "Reward Systems",
-          "Personalization",
-          "Community Loops",
-          "Milestones",
-          "Notifications",
-          "User Feedback"
-        ]
-      },
-
-      {
-        "number": "05",
-        "name": "THE MONEY LEVEL",
-        "shortName": "Monetization Architecture",
-        "description": "Understand how platforms convert attention, transactions and participation into sustainable revenue.",
-        "topics": [
-          "Affiliate Revenue",
-          "Advertising",
-          "Vendor Fees",
-          "Subscriptions",
-          "Transaction Fees",
-          "Lead Generation",
-          "Marketplace Economics",
-          "Revenue Sharing"
-        ]
-      },
-
-      {
-        "number": "06",
-        "name": "THE NETWORK LEVEL",
-        "shortName": "Platform Economics",
-        "description": "Understand what happens when users, vendors, creators, affiliates and advertisers become part of the same economic system.",
-        "topics": [
-          "Network Effects",
-          "Two-Sided Markets",
-          "Supply and Demand",
-          "Marketplace Liquidity",
-          "Cross-Side Incentives",
-          "Participant Economics",
-          "Platform Flywheels",
-          "Ecosystem Design"
-        ]
-      },
-
-      {
-        "number": "07",
-        "name": "THE STRATEGY LEVEL",
-        "shortName": "Business Architecture",
-        "description": "Connect behavior, technology, economics and distribution into a coherent business system.",
-        "topics": [
-          "Competitive Advantage",
-          "Business Models",
-          "Distribution",
-          "Leverage",
-          "Positioning",
-          "Strategic Moats",
-          "Unit Economics",
-          "Scalability"
-        ]
-      }
-    ]
+    "secondaryCTA": "View Collection"
   },
 
   "bookshelf": {
-
     "eyebrow": "THE COLLECTION",
 
-    "title": "The Naija Biz Library",
-
-    "subtitle": "Read the level you need. Build the system you understand.",
+    "title": "Choose your book.",
 
     "books": [
-
-      {
-        "id": "behavioral-platform-architecture",
-
-        "status": "available",
-
-        "featured": true,
-
-        "badge": "LEVEL 02",
-
-        "number": "01",
-
-        "level": "THE PLATFORM LEVEL",
-
-        "title": "BEHAVIORAL PLATFORM ARCHITECTURE™",
-
-        "shortDescription": "How behavioral economics, consumer psychology and product design become the architecture behind modern digital platforms.",
-
-        "cover": "assets/behavioral-platform-architecture.png",
-
-        "price": "See current price",
-
-        "cta": "Get the Book",
-
-        "checkout": "YOUR_ACTUAL_SELAR_CHECKOUT_URL",
-
-        "tags": [
-          "Behavioral Economics",
-          "Platform Strategy",
-          "UX",
-          "Psychology"
-        ]
-      },
-
-      {
-        "id": "psychology-of-attention",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 01",
-
-        "number": "02",
-
-        "level": "THE HUMAN LEVEL",
-
-        "title": "THE PSYCHOLOGY OF ATTENTION™",
-
-        "shortDescription": "A practical exploration of attention, perception, decision-making and the behavioral principles behind consumer choices.",
-
-        "cover": "assets/psychology-of-attention.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "FOMO",
-          "Anchoring",
-          "Loss Aversion",
-          "Consumer Psychology"
-        ]
-      },
-
-      {
-        "id": "conversion-architecture",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 03",
-
-        "number": "03",
-
-        "level": "THE CONVERSION LEVEL",
-
-        "title": "CONVERSION ARCHITECTURE™",
-
-        "shortDescription": "How digital businesses turn attention into trust, action and measurable conversion.",
-
-        "cover": "assets/conversion-architecture.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Conversion",
-          "UX",
-          "Offers",
-          "Trust"
-        ]
-      },
-
-      {
-        "id": "engagement-retention-systems",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 04",
-
-        "number": "04",
-
-        "level": "THE RETENTION LEVEL",
-
-        "title": "ENGAGEMENT & RETENTION SYSTEMS™",
-
-        "shortDescription": "How platforms create useful feedback, progress and reward systems that encourage continued participation.",
-
-        "cover": "assets/engagement-retention-systems.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Retention",
-          "Gamification",
-          "Rewards",
-          "Engagement"
-        ]
-      },
-
-      {
-        "id": "monetization-architecture",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 05",
-
-        "number": "05",
-
-        "level": "THE MONEY LEVEL",
-
-        "title": "MONETIZATION ARCHITECTURE™",
-
-        "shortDescription": "How platforms transform participation, transactions, advertising and partnerships into sustainable revenue systems.",
-
-        "cover": "assets/monetization-architecture.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Monetization",
-          "Affiliate",
-          "Advertising",
-          "Revenue"
-        ]
-      },
-
-      {
-        "id": "platform-economics",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 06",
-
-        "number": "06",
-
-        "level": "THE NETWORK LEVEL",
-
-        "title": "PLATFORM ECONOMICS™",
-
-        "shortDescription": "The economics of marketplaces, networks, vendors, users, creators, affiliates and multi-sided platforms.",
-
-        "cover": "assets/platform-economics.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Network Effects",
-          "Marketplaces",
-          "Platform Economics",
-          "Business Models"
-        ]
-      },
-
-      {
-        "id": "business-architecture",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "LEVEL 07",
-
-        "number": "07",
-
-        "level": "THE STRATEGY LEVEL",
-
-        "level": "THE STRATEGY LEVEL",
-
-        "title": "BUSINESS ARCHITECTURE™",
-
-        "shortDescription": "How to connect behavior, distribution, technology, economics and competitive advantage into one business system.",
-
-        "cover": "assets/business-architecture.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Strategy",
-          "Leverage",
-          "Competitive Advantage",
-          "Scale"
-        ]
-      },
 
       {
         "id": "dangote-ipo-decoded",
@@ -480,15 +67,15 @@
 
         "featured": true,
 
-        "badge": "SPECIAL EDITION",
+        "badge": "FLAGSHIP",
 
-        "number": "08",
-
-        "level": "FINANCIAL INTELLIGENCE",
+        "number": "01",
 
         "title": "DANGOTE IPO DECODED™",
 
         "shortDescription": "The practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO.",
+
+        "hook": "Understand the offer before you decide what to do with it.",
 
         "cover": "assets/book-mockup.png",
 
@@ -502,439 +89,141 @@
           "IPO",
           "Nigeria",
           "Financial Education"
+        ],
+
+        "highlights": [
+          "Understand how IPOs work",
+          "Read the important numbers",
+          "Evaluate the business",
+          "Understand the risks",
+          "Build your own decision framework"
+        ],
+
+        "preview": [
+          "assets/preview-01.png",
+          "assets/preview-02.png",
+          "assets/preview-03.png"
         ]
-      }
-    ]
-  },
-
-  "behavioralPlatformArchitecture": {
-
-    "eyebrow": "CORE SYSTEM",
-
-    "title": "Behavioral Platform Architecture",
-
-    "description": "Behavioral Platform Architecture examines how principles from behavioral economics, psychology and user experience can be translated into transparent platform mechanics.",
-
-    "architecture": [
-
-      {
-        "number": "01",
-        "principle": "FOMO",
-        "title": "Fear of Missing Out",
-        "blurb": "Legitimate deadlines, campaign windows and genuinely limited opportunities can communicate urgency and help users make timely decisions."
       },
 
       {
+        "id": "behavioral-platform-architecture",
+
+        "status": "coming-soon",
+
+        "featured": false,
+
+        "badge": "COMING SOON",
+
         "number": "02",
-        "principle": "ANCHORING",
-        "title": "Anchoring Bias",
-        "blurb": "The first meaningful reference point can influence how users interpret subsequent prices, offers or levels of value."
+
+        "title": "BEHAVIORAL PLATFORM ARCHITECTURE™",
+
+        "shortDescription": "How psychology, behavioral economics and product design come together inside modern platforms.",
+
+        "hook": "Understand the systems behind attention, action, retention and monetization.",
+
+        "cover": "assets/behavioral-platform-architecture.png",
+
+        "price": "Coming Soon",
+
+        "cta": "Coming Soon",
+
+        "checkout": "#",
+
+        "tags": [
+          "Behavior",
+          "Platforms",
+          "Psychology",
+          "Business"
+        ],
+
+        "highlights": [
+          "FOMO",
+          "Anchoring",
+          "Loss aversion",
+          "Present bias",
+          "Endowment effect",
+          "Reward systems"
+        ],
+
+        "preview": []
       },
 
       {
+        "id": "monetization-architecture",
+
+        "status": "coming-soon",
+
+        "featured": false,
+
+        "badge": "COMING SOON",
+
         "number": "03",
-        "principle": "LOSS AVERSION",
-        "title": "Loss Aversion",
-        "blurb": "People often react more strongly to potential losses than equivalent gains. Platforms can communicate genuine consequences clearly without manufacturing fear."
-      },
 
-      {
-        "number": "04",
-        "principle": "PRESENT BIAS",
-        "title": "Present Bias",
-        "blurb": "Immediate rewards often feel more valuable than delayed rewards, making timing and reward visibility important parts of platform design."
-      },
+        "title": "MONETIZATION ARCHITECTURE™",
 
-      {
-        "number": "05",
-        "principle": "ENDOWMENT EFFECT",
-        "title": "The Endowment Effect",
-        "blurb": "Users may value something more once it feels like theirs. Personal dashboards, earned rewards and customized experiences can create meaningful ownership."
-      },
+        "shortDescription": "A practical look at how digital platforms turn users, vendors, affiliates and transactions into sustainable revenue.",
 
-      {
-        "number": "06",
-        "principle": "SOCIAL PROOF",
-        "title": "Social Proof",
-        "blurb": "Real reviews, verified activity, participation numbers and credible testimonials reduce uncertainty by showing evidence of other people's experiences."
-      },
+        "hook": "Build the money system behind the platform.",
 
-      {
-        "number": "07",
-        "principle": "SCARCITY",
-        "title": "The Scarcity Effect",
-        "blurb": "Genuinely limited inventory, capacity or campaign budgets can increase perceived value while communicating a real constraint."
-      },
+        "cover": "assets/monetization-architecture.png",
 
-      {
-        "number": "08",
-        "principle": "FRAMING",
-        "title": "Framing Effect",
-        "blurb": "The way information is presented can influence interpretation. Good platform design makes the relevant frame clear without hiding important alternatives."
-      },
+        "price": "Coming Soon",
 
-      {
-        "number": "09",
-        "principle": "CHOICE ARCHITECTURE",
-        "title": "Choice Architecture",
-        "blurb": "The structure of available choices can reduce cognitive overload and make the most useful path easier to understand."
-      },
+        "cta": "Coming Soon",
 
-      {
-        "number": "10",
-        "principle": "REWARD LOOPS",
-        "title": "Reward Loops",
-        "blurb": "A well-designed loop connects action, feedback and meaningful reward so users understand what happened and why continued participation has value."
-      },
+        "checkout": "#",
 
-      {
-        "number": "11",
-        "principle": "PROGRESS EFFECT",
-        "title": "Progress & Goal Gradient",
-        "blurb": "Visible progress toward a meaningful goal can help users understand where they are and what remains to be completed."
-      },
+        "tags": [
+          "Monetization",
+          "Affiliate",
+          "Advertising",
+          "Platforms"
+        ],
 
-      {
-        "number": "12",
-        "principle": "PERSONALIZATION",
-        "title": "Personalized Experience",
-        "blurb": "Relevant recommendations and customized interfaces can reduce noise and help users discover information that genuinely matches their needs."
-      }
-    ]
-  },
+        "highlights": [
+          "Affiliate commissions",
+          "Advertising models",
+          "Vendor economics",
+          "Audience rewards",
+          "Revenue sharing"
+        ],
 
-  "platformArchitecture": {
-
-    "eyebrow": "THE PLATFORM FLYWHEEL",
-
-    "title": "Attention → Value → Action → Reward → Return",
-
-    "description": "The central platform architecture connects user behavior with product value and business economics.",
-
-    "stages": [
-
-      {
-        "number": "01",
-        "name": "ATTENTION",
-        "description": "Earn legitimate attention through relevance, positioning, useful information and strong presentation."
-      },
-
-      {
-        "number": "02",
-        "name": "VALUE",
-        "description": "Give the user a clear reason to remain: information, utility, entertainment, savings, access or opportunity."
-      },
-
-      {
-        "number": "03",
-        "name": "ACTION",
-        "description": "Reduce unnecessary friction between intention and the action that creates value."
-      },
-
-      {
-        "number": "04",
-        "name": "FEEDBACK",
-        "description": "Show users what happened immediately and clearly."
-      },
-
-      {
-        "number": "05",
-        "name": "REWARD",
-        "description": "Return meaningful value through savings, information, access, recognition, points, commissions or other legitimate rewards."
-      },
-
-      {
-        "number": "06",
-        "name": "RETURN",
-        "description": "Give users a reason to come back because the platform remains useful—not simply because they feel trapped by it."
-      }
-    ]
-  },
-
-  "monetizationArchitecture": {
-
-    "eyebrow": "THE MONEY SYSTEM",
-
-    "title": "One platform. Multiple economic participants.",
-
-    "description": "A platform can create an economic loop where vendors receive distribution, affiliates receive commissions, audiences receive legitimate rewards and the platform earns revenue for facilitating the system.",
-
-    "participants": [
-
-      {
-        "role": "AUDIENCE",
-        "value": "Attention, engagement and transactions",
-        "potentialReward": "Cashback, points, discounts, access or other legitimate rewards"
-      },
-
-      {
-        "role": "AFFILIATE",
-        "value": "Distribution and customer acquisition",
-        "potentialReward": "Commission on qualifying transactions"
-      },
-
-      {
-        "role": "VENDOR",
-        "value": "Products, services and commercial inventory",
-        "potentialReward": "Sales, leads and customer acquisition"
-      },
-
-      {
-        "role": "ADVERTISER",
-        "value": "Campaign funding and demand generation",
-        "potentialReward": "Qualified attention and measurable outcomes"
-      },
-
-      {
-        "role": "PLATFORM",
-        "value": "Technology, trust, matching, tracking and infrastructure",
-        "potentialReward": "Transaction fees, advertising revenue, subscriptions or other platform revenue"
-      }
-    ]
-  },
-
-  "frameworks": {
-
-    "eyebrow": "PRACTICAL FRAMEWORKS",
-
-    "title": "Think in systems.",
-
-    "items": [
-
-      {
-        "number": "01",
-        "title": "Behavior → Mechanic",
-        "text": "Identify the behavioral principle, then translate it into a transparent product mechanic."
-      },
-
-      {
-        "number": "02",
-        "title": "Mechanic → User Value",
-        "text": "Ask what genuine value the mechanic creates for the user."
-      },
-
-      {
-        "number": "03",
-        "title": "User Value → Business Value",
-        "text": "Connect the user outcome to a sustainable economic model."
-      },
-
-      {
-        "number": "04",
-        "title": "Business Value → Platform Loop",
-        "text": "Design the system so participants create value for one another."
-      },
-
-      {
-        "number": "05",
-        "title": "Measure → Improve",
-        "text": "Use real behavioral and business metrics to improve the system instead of relying on assumptions."
-      }
-    ]
-  },
-
-  "quickFacts": [
-
-    {
-      "label": "FORMAT",
-      "value": "Digital Business Library"
-    },
-
-    {
-      "label": "ORIGIN",
-      "value": "Nigeria"
-    },
-
-    {
-      "label": "FOCUS",
-      "value": "Business & Platform Intelligence"
-    },
-
-    {
-      "label": "APPROACH",
-      "value": "Systems First"
-    }
-  ],
-
-  "inside": {
-
-    "eyebrow": "WHAT'S INSIDE",
-
-    "title": "The library covers the entire system.",
-
-    "items": [
-
-      {
-        "number": "01",
-        "title": "Human Behavior",
-        "text": "Understand why people notice, compare, choose, postpone, return and recommend."
-      },
-
-      {
-        "number": "02",
-        "title": "Behavioral Economics",
-        "text": "Explore FOMO, anchoring, loss aversion, present bias, endowment effects and related principles."
-      },
-
-      {
-        "number": "03",
-        "title": "Platform Architecture",
-        "text": "Translate behavioral insights into transparent UX, product and platform mechanics."
-      },
-
-      {
-        "number": "04",
-        "title": "Conversion Systems",
-        "text": "Understand the path from attention to trust to meaningful action."
-      },
-
-      {
-        "number": "05",
-        "title": "Retention Systems",
-        "text": "Build useful engagement loops around progress, feedback, rewards and continued value."
-      },
-
-      {
-        "number": "06",
-        "title": "Monetization",
-        "text": "Understand advertising, affiliate commissions, transactions, subscriptions and marketplace economics."
-      },
-
-      {
-        "number": "07",
-        "title": "Network Effects",
-        "text": "Understand how multiple participant groups can create increasing value for one another."
-      },
-
-      {
-        "number": "08",
-        "title": "Business Strategy",
-        "text": "Connect the individual mechanics into a broader competitive and economic system."
-      }
-    ]
-  },
-
-  "toolkit": {
-
-    "eyebrow": "LIBRARY TOOLKIT",
-
-    "title": "Practical thinking tools.",
-
-    "items": [
-      "Behavioral principle map",
-      "Platform architecture canvas",
-      "User journey framework",
-      "Conversion framework",
-      "Retention loop framework",
-      "Monetization model map",
-      "Affiliate economics framework",
-      "Marketplace architecture",
-      "Network-effect checklist",
-      "Business model scorecard",
-      "Unit economics framework",
-      "Strategy evaluation framework"
-    ]
-  },
-
-  "philosophy": {
-
-    "eyebrow": "THE PRINCIPLE",
-
-    "statement": "Build systems that create value.",
-
-    "supportingLine": "Understand the behavior. Design the mechanism. Measure the outcome. Improve the system."
-  },
-
-  "preview": {
-
-    "eyebrow": "PREVIEW",
-
-    "title": "Open the library.",
-
-    "items": [
-      {
-        "image": "assets/preview-01.png",
-        "label": "BEHAVIORAL PLATFORM ARCHITECTURE"
-      },
-      {
-        "image": "assets/preview-02.png",
-        "label": "MONETIZATION ARCHITECTURE"
-      },
-      {
-        "image": "assets/preview-03.png",
-        "label": "PLATFORM ECONOMICS"
+        "preview": []
       }
     ]
   },
 
   "about": {
+    "eyebrow": "ABOUT",
 
-    "eyebrow": "ABOUT THE LIBRARY",
+    "title": "Practical books. No unnecessary noise.",
 
-    "title": "Business intelligence without the unnecessary jargon.",
-
-    "text": "Naija Biz Library is a Nigerian-focused collection of practical business education. The library explores how people behave, how platforms are designed, how businesses monetize attention and transactions, and how different participants can create value within the same ecosystem.",
-
-    "principles": [
-      "Systems over isolated tactics",
-      "Evidence over hype",
-      "Value over manipulation",
-      "Understanding over imitation",
-      "Sustainable economics over vanity metrics",
-      "Transparent persuasion over covert influence"
-    ]
+    "text": "A collection of practical digital books designed to make complicated business, financial and platform concepts easier to understand and apply."
   },
 
   "faq": {
-
-    "eyebrow": "FAQ",
-
-    "title": "Before you enter the library.",
-
     "items": [
-
       {
-        "question": "What is Naija Biz Library?",
-        "answer": "Naija Biz Library is the public-facing identity of Nigerian Business Library, a collection of practical books covering business strategy, behavioral economics, platform architecture, monetization and related subjects."
+        "question": "Are these physical books?",
+        "answer": "The collection is designed as digital books."
       },
 
       {
-        "question": "What does Behavioral Platform Architecture mean?",
-        "answer": "It describes the process of translating behavioral insights into transparent product, UX and platform systems that create useful outcomes for users and sustainable outcomes for businesses."
+        "question": "Where do I purchase a book?",
+        "answer": "Available books can be purchased through the checkout button."
       },
 
       {
-        "question": "Is neuromarketing the same as manipulation?",
-        "answer": "No. Understanding attention, perception and decision-making can improve communication and product design. The library emphasizes transparent, user-respecting applications rather than covert attempts to bypass informed judgment."
-      },
-
-      {
-        "question": "Are the books investment advice?",
-        "answer": "Books that discuss investing or financial markets are educational resources and do not provide individualized financial recommendations."
-      },
-
-      {
-        "question": "Where can I purchase a book?",
-        "answer": "Available books can be purchased through the configured checkout provider."
+        "question": "Is DANGOTE IPO DECODED™ investment advice?",
+        "answer": "No. It is an educational resource and does not provide individualized investment recommendations."
       }
     ]
   },
 
-  "purchase": {
-
-    "eyebrow": "ENTER THE LIBRARY",
-
-    "title": "Choose your level.",
-
-    "button": "Explore the Books"
-  },
-
-  "disclaimer": "The Nigerian Business Library provides educational content for informational purposes. Behavioral, business, marketing and financial concepts should be applied responsibly and evaluated in the context of the user's specific circumstances. Financial content is not individualized investment, legal or tax advice.",
-
   "footer": {
-
-    "tagline": "Understand the behavior. Design the system. Build the business.",
-
-    "copyright": "© 2026 Nigerian Business Library. All rights reserved."
+    "copyright": "© 2026. All rights reserved.",
+    "privacy": "Privacy Policy"
   }
 }

@@ -1,29 +1,24 @@
-/* =========================================================
-   DANGOTE IPO DECODED™
-   STOREFRONT APPLICATION
-   app.js
-   ========================================================= */
-
 (() => {
   "use strict";
 
-  /* -------------------------------------------------------
-     CONFIG
-  ------------------------------------------------------- */
+  /* =========================================================
+     DANGOTE IPO DECODED™
+     STOREFRONT APP
+     ========================================================= */
 
   const CONTENT_URL = "./content.json";
 
   const state = {
     content: null,
-    selectedBook: null,
     featuredBook: null,
+    selectedBook: null,
     previewIndex: 0
   };
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      DOM HELPERS
-  ------------------------------------------------------- */
+     ========================================================= */
 
   const $ = (selector, parent = document) =>
     parent.querySelector(selector);
@@ -32,9 +27,9 @@
     Array.from(parent.querySelectorAll(selector));
 
 
-  /* -------------------------------------------------------
-     BASIC HELPERS
-  ------------------------------------------------------- */
+  /* =========================================================
+     GENERAL HELPERS
+     ========================================================= */
 
   function setText(selector, value) {
     const element = $(selector);
@@ -59,12 +54,16 @@
 
 
   function isSafeURL(url) {
-    if (!url || typeof url !== "string") {
+    if (
+      !url ||
+      typeof url !== "string"
+    ) {
       return false;
     }
 
     try {
-      const parsed = new URL(url, window.location.href);
+      const parsed =
+        new URL(url, window.location.href);
 
       return (
         parsed.protocol === "https:" ||
@@ -77,25 +76,9 @@
 
 
   function getBooks() {
-    return state.content?.bookshelf?.books || [];
-  }
-
-
-  function getAvailableBooks() {
-    return getBooks().filter(
-      book => book.status === "available"
-    );
-  }
-
-
-  function findFeaturedBook() {
-    const books = getBooks();
-
     return (
-      books.find(book => book.featured === true) ||
-      books.find(book => book.status === "available") ||
-      books[0] ||
-      null
+      state.content?.bookshelf?.books ||
+      []
     );
   }
 
@@ -107,15 +90,37 @@
   }
 
 
-  /* -------------------------------------------------------
-     META / SEO
-  ------------------------------------------------------- */
+  function findFeaturedBook() {
+    const books = getBooks();
+
+    return (
+      books.find(
+        book => book.featured === true
+      ) ||
+      books.find(
+        book => book.status === "available"
+      ) ||
+      books[0] ||
+      null
+    );
+  }
+
+
+  /* =========================================================
+     SEO / META
+     ========================================================= */
 
   function renderMeta(content) {
-    const site = content.site || {};
-    const seo = content.seo || {};
+    const site =
+      content.site || {};
 
-    if (seo.title || site.name) {
+    const seo =
+      content.seo || {};
+
+    if (
+      seo.title ||
+      site.name
+    ) {
       document.title =
         seo.title ||
         site.name;
@@ -141,7 +146,9 @@
     if (ogTitle) {
       ogTitle.setAttribute(
         "content",
-        seo.title || site.name || ""
+        seo.title ||
+        site.name ||
+        ""
       );
     }
 
@@ -155,74 +162,80 @@
       );
     }
 
-    const brandMain =
+    const brand =
       $(".brand-main");
 
-    if (brandMain && site.name) {
-      brandMain.textContent =
+    if (
+      brand &&
+      site.name
+    ) {
+      brand.textContent =
         site.name;
     }
 
     const brandSub =
       $(".brand-sub");
 
-    if (brandSub && site.type) {
+    if (brandSub) {
       brandSub.textContent =
-        site.type;
+        site.type ||
+        "Digital Edition";
     }
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      HERO
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderHero(content) {
-    const hero = content.hero || {};
-    const book = state.featuredBook;
+    const hero =
+      content.hero || {};
+
+    const book =
+      state.featuredBook;
 
     setText(
       "#hero-eyebrow",
-      hero.eyebrow || "DIGITAL EDITION"
+      hero.eyebrow ||
+      "DIGITAL EDITION"
     );
 
     setText(
       "#hero-title",
       hero.title ||
-        book?.hook ||
-        book?.title ||
-        ""
+      book?.hook ||
+      book?.title ||
+      ""
     );
 
     setText(
       "#hero-subtitle",
       hero.subtitle ||
-        book?.title ||
-        ""
+      book?.title ||
+      ""
     );
 
     setText(
       "#hero-description",
       hero.description ||
-        book?.shortDescription ||
-        ""
+      book?.shortDescription ||
+      ""
     );
 
-    const heroCTA =
+    const primaryCTA =
       $("[data-primary-cta]");
 
-    if (heroCTA) {
-      heroCTA.textContent =
+    if (primaryCTA) {
+      primaryCTA.textContent =
         hero.primaryCTA ||
         book?.cta ||
         "Get the Book";
 
-      if (book) {
-        configureBookLink(
-          heroCTA,
-          book
-        );
-      }
+      configureBookLink(
+        primaryCTA,
+        book
+      );
     }
 
     const secondaryCTA =
@@ -233,21 +246,22 @@
         hero.secondaryCTA ||
         "View Books";
 
-      secondaryCTA.setAttribute(
-        "href",
-        "#bookshelf"
-      );
+      secondaryCTA.href =
+        "#bookshelf";
     }
 
-    const heroImage =
+    const image =
       $("#hero-book-image");
 
-    if (heroImage && book) {
-      heroImage.src =
-        book.cover || "";
-
-      heroImage.alt =
-        `${book.title || "Book"} cover`;
+    if (
+      image &&
+      book
+    ) {
+      setImage(
+        image,
+        book.cover,
+        `${book.title || "Book"} cover`
+      );
     }
 
     renderHeroMeta(book);
@@ -269,13 +283,16 @@
 
     const items = [];
 
-    if (book.status === "available") {
-      items.push("Available now");
+    if (
+      book.status === "available"
+    ) {
+      items.push(
+        "Available now"
+      );
     }
 
     if (
-      Array.isArray(book.tags) &&
-      book.tags.length
+      Array.isArray(book.tags)
     ) {
       items.push(
         ...book.tags.slice(0, 3)
@@ -299,14 +316,16 @@
       span.textContent =
         item;
 
-      container.appendChild(span);
+      container.appendChild(
+        span
+      );
     });
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      FEATURED BOOK
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderFeaturedBook(book) {
     if (!book) return;
@@ -324,30 +343,30 @@
     setText(
       "#featured-badge",
       book.badge ||
-        "FEATURED"
+      "FEATURED"
     );
 
     setText(
       "#featured-hook",
       book.hook ||
-        book.shortDescription
+      book.shortDescription
     );
 
     setText(
       "#featured-price",
       book.price ||
-        "See current price"
+      "See current price"
     );
 
     const image =
       $("#featured-book-image");
 
     if (image) {
-      image.src =
-        book.cover || "";
-
-      image.alt =
-        `${book.title || "Book"} cover`;
+      setImage(
+        image,
+        book.cover,
+        `${book.title || "Book"} cover`
+      );
     }
 
     renderHighlights(
@@ -367,9 +386,13 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      BOOKSHELF
-  ------------------------------------------------------- */
+     
+     IMPORTANT:
+     Featured book is intentionally excluded.
+     It already has its own featured section.
+     ========================================================= */
 
   function renderBookshelf(content) {
     const container =
@@ -378,7 +401,12 @@
     if (!container) return;
 
     const books =
-      content.bookshelf?.books || [];
+      (
+        content.bookshelf?.books ||
+        []
+      ).filter(
+        book => !book.featured
+      );
 
     container.innerHTML = "";
 
@@ -393,12 +421,6 @@
       card.className =
         "book-card";
 
-      if (book.featured) {
-        card.classList.add(
-          "book-card-featured"
-        );
-      }
-
       const statusLabel =
         book.status === "available"
           ? (
@@ -410,7 +432,7 @@
               "COMING SOON"
             );
 
-      const buttonLabel =
+      const actionLabel =
         book.status === "available"
           ? (
               book.cta ||
@@ -423,20 +445,24 @@
           type="button"
           class="book-card-select"
           data-book-id="${escapeHTML(book.id)}"
-          aria-label="View ${escapeHTML(book.title)}"
+          aria-label="View ${escapeHTML(book.title || "book")}"
         >
+
           <span class="book-card-cover-wrap">
+
             <img
               class="book-card-cover"
               src="${escapeHTML(book.cover || "")}"
               alt="${escapeHTML(book.title || "Book cover")}"
               loading="lazy"
             />
+
           </span>
 
           <span class="book-card-content">
 
             <span class="book-card-topline">
+
               <span class="book-card-number">
                 ${escapeHTML(book.number || "")}
               </span>
@@ -444,6 +470,7 @@
               <span class="book-card-badge">
                 ${escapeHTML(statusLabel)}
               </span>
+
             </span>
 
             <span class="book-card-title">
@@ -455,16 +482,19 @@
             </span>
 
             <span class="book-card-bottom">
+
               <span class="book-card-price">
                 ${escapeHTML(book.price || "")}
               </span>
 
               <span class="book-card-action">
-                ${escapeHTML(buttonLabel)}
+                ${escapeHTML(actionLabel)}
               </span>
+
             </span>
 
           </span>
+
         </button>
       `;
 
@@ -478,38 +508,43 @@
 
 
   function bindBookSelection() {
-    $$("[data-book-id]").forEach(button => {
-      button.addEventListener(
-        "click",
-        () => {
-          const bookId =
-            button.dataset.bookId;
+    $$("[data-book-id]")
+      .forEach(button => {
 
-          const book =
-            getBookById(bookId);
+        button.addEventListener(
+          "click",
+          () => {
 
-          if (!book) return;
+            const id =
+              button.dataset.bookId;
 
-          selectBook(book);
+            const book =
+              getBookById(id);
 
-          const details =
-            $("#book-details");
+            if (!book) return;
 
-          if (details) {
-            details.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
+            selectBook(book);
+
+            const details =
+              $("#book-details");
+
+            if (details) {
+              details.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+
           }
-        }
-      );
-    });
+        );
+
+      });
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      BOOK DETAILS
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function selectBook(book) {
     if (!book) return;
@@ -546,7 +581,7 @@
     setText(
       "#details-eyebrow",
       book.badge ||
-        "BOOK"
+      "BOOK"
     );
 
     setText(
@@ -557,19 +592,19 @@
     setText(
       "#details-hook",
       book.hook ||
-        ""
+      ""
     );
 
     setText(
       "#details-description",
       book.shortDescription ||
-        ""
+      ""
     );
 
     setText(
       "#details-price",
       book.price ||
-        ""
+      ""
     );
 
     renderHighlights(
@@ -581,11 +616,11 @@
       $("#details-book-image");
 
     if (image) {
-      image.src =
-        book.cover || "";
-
-      image.alt =
-        `${book.title || "Book"} cover`;
+      setImage(
+        image,
+        book.cover,
+        `${book.title || "Book"} cover`
+      );
     }
 
     const checkout =
@@ -600,9 +635,9 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      HIGHLIGHTS
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderHighlights(
     selector,
@@ -637,9 +672,9 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      PREVIEW
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderPreview(book) {
     const section =
@@ -678,6 +713,7 @@
 
     previews.forEach(
       (imagePath, index) => {
+
         const slide =
           document.createElement("div");
 
@@ -695,7 +731,9 @@
           />
         `;
 
-        track.appendChild(slide);
+        track.appendChild(
+          slide
+        );
 
         const dot =
           document.createElement("button");
@@ -716,14 +754,18 @@
         dot.addEventListener(
           "click",
           () => {
+
             state.previewIndex =
               index;
 
             updatePreviewPosition();
+
           }
         );
 
-        dots.appendChild(dot);
+        dots.appendChild(
+          dot
+        );
       }
     );
 
@@ -737,33 +779,35 @@
     const track =
       $("#preview-track");
 
+    if (!track) return;
+
     const slides =
       $$(".preview-slide", track);
 
     const dots =
       $$(".preview-dot");
 
-    if (!track || !slides.length) {
+    if (!slides.length) {
       return;
     }
 
-    const offset =
-      state.previewIndex * 100;
-
     track.style.transform =
-      `translateX(-${offset}%)`;
+      `translateX(-${state.previewIndex * 100}%)`;
 
     slides.forEach(
       (slide, index) => {
+
         slide.setAttribute(
           "aria-hidden",
           index !== state.previewIndex
         );
+
       }
     );
 
     dots.forEach(
       (dot, index) => {
+
         const active =
           index === state.previewIndex;
 
@@ -772,42 +816,47 @@
           active
         );
 
-        dot.setAttribute(
-          "aria-current",
-          active
-            ? "true"
-            : "false"
-        );
+        if (active) {
+          dot.setAttribute(
+            "aria-current",
+            "true"
+          );
+        } else {
+          dot.removeAttribute(
+            "aria-current"
+          );
+        }
+
       }
     );
   }
 
 
-  /* -------------------------------------------------------
-     PURCHASE AREA
-  ------------------------------------------------------- */
+  /* =========================================================
+     PURCHASE
+     ========================================================= */
 
   function updatePurchaseArea(book) {
     setText(
       "#purchase-title",
       book?.title ||
-        state.content?.site?.name ||
-        ""
+      state.content?.site?.name ||
+      ""
     );
 
     setText(
       "#purchase-description",
       book?.hook ||
-        book?.shortDescription ||
-        ""
+      book?.shortDescription ||
+      ""
     );
 
-    const purchaseButton =
+    const button =
       $("[data-purchase-button]");
 
-    if (purchaseButton) {
+    if (button) {
       configureBookLink(
-        purchaseButton,
+        button,
         book
       );
     }
@@ -820,7 +869,7 @@
   ) {
     if (!element) return;
 
-    const available =
+    const isAvailable =
       book?.status === "available";
 
     const checkout =
@@ -830,45 +879,41 @@
       isSafeURL(checkout);
 
     const canPurchase =
-      available &&
+      isAvailable &&
       validCheckout;
 
     if (canPurchase) {
+
       element.href =
         checkout;
-
-      element.removeAttribute(
-        "aria-disabled"
-      );
 
       element.classList.remove(
         "is-disabled"
       );
 
       element.removeAttribute(
-        "tabindex"
+        "aria-disabled"
       );
 
-      if (
-        element.tagName === "BUTTON"
-      ) {
-        element.disabled = false;
-      }
+      element.removeAttribute(
+        "tabindex"
+      );
 
       element.dataset.checkoutReady =
         "true";
 
     } else {
+
       element.href =
         "#";
+
+      element.classList.add(
+        "is-disabled"
+      );
 
       element.setAttribute(
         "aria-disabled",
         "true"
-      );
-
-      element.classList.add(
-        "is-disabled"
       );
 
       element.setAttribute(
@@ -876,60 +921,38 @@
         "-1"
       );
 
-      if (
-        element.tagName === "BUTTON"
-      ) {
-        element.disabled = true;
-      }
-
       element.dataset.checkoutReady =
         "false";
     }
 
     if (
-      book?.status === "coming-soon"
+      book?.status ===
+      "coming-soon"
     ) {
+
       element.textContent =
         "Coming Soon";
+
     } else {
+
       element.textContent =
         book?.cta ||
         "Get the Book";
+
     }
   }
 
 
-  /* -------------------------------------------------------
-     CHECKOUT LINKS
-  ------------------------------------------------------- */
-
-  function applyCheckoutLinks() {
-    const available =
-      state.selectedBook ||
-      state.featuredBook;
-
-    if (!available) return;
-
-    $$("[data-checkout-link]")
-      .forEach(link => {
-        configureBookLink(
-          link,
-          available
-        );
-      });
-  }
-
-
-  /* -------------------------------------------------------
+  /* =========================================================
      CHECKOUT TRACKING
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function setupCheckoutTracking() {
     $$(
-      "[data-featured-checkout], " +
-      "[data-details-checkout], " +
-      "[data-checkout-link], " +
-      "[data-purchase-button], " +
+      "[data-featured-checkout]," +
+      "[data-details-checkout]," +
+      "[data-checkout-link]," +
+      "[data-purchase-button]," +
       "[data-primary-cta]"
     ).forEach(link => {
 
@@ -974,15 +997,16 @@
               }
             );
           }
+
         }
       );
     });
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      ABOUT
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderAbout(content) {
     const about =
@@ -991,31 +1015,34 @@
     setText(
       "#about-eyebrow",
       about.eyebrow ||
-        "ABOUT"
+      "ABOUT"
     );
 
     setText(
       "#about-title",
       about.title ||
-        ""
+      ""
     );
 
     setText(
       "#about-description",
       about.text ||
-        about.description ||
-        ""
+      about.description ||
+      ""
     );
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      FAQ
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderFAQ(content) {
     const faq =
       content.faq || {};
+
+    const section =
+      $("#faq");
 
     const list =
       $("#faq-list");
@@ -1030,8 +1057,6 @@
         : [];
 
     if (!items.length) {
-      const section =
-        $("#faq");
 
       if (section) {
         section.hidden = true;
@@ -1040,9 +1065,6 @@
       return;
     }
 
-    const section =
-      $("#faq");
-
     if (section) {
       section.hidden = false;
     }
@@ -1050,57 +1072,67 @@
     items.forEach(
       (item, index) => {
 
-        const wrapper =
-          document.createElement("details");
+        const details =
+          document.createElement(
+            "details"
+          );
 
-        wrapper.className =
+        details.className =
           "faq-item";
 
         if (index === 0) {
-          wrapper.open = true;
+          details.open = true;
         }
 
         const summary =
-          document.createElement("summary");
+          document.createElement(
+            "summary"
+          );
 
         summary.textContent =
-          item.question || "";
+          item.question ||
+          "";
 
         const answer =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         answer.className =
           "faq-answer";
 
         const paragraph =
-          document.createElement("p");
+          document.createElement(
+            "p"
+          );
 
         paragraph.textContent =
-          item.answer || "";
+          item.answer ||
+          "";
 
         answer.appendChild(
           paragraph
         );
 
-        wrapper.appendChild(
+        details.appendChild(
           summary
         );
 
-        wrapper.appendChild(
+        details.appendChild(
           answer
         );
 
         list.appendChild(
-          wrapper
+          details
         );
       }
     );
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      FOOTER
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderFooter(content) {
     const footer =
@@ -1109,48 +1141,48 @@
     const site =
       content.site || {};
 
-    const footerBrand =
+    const brand =
       $(".footer-brand strong");
 
     if (
-      footerBrand &&
+      brand &&
       site.name
     ) {
-      footerBrand.textContent =
+      brand.textContent =
         site.name;
     }
 
     setText(
       "#footer-text",
       footer.text ||
-        content.hero?.subtitle ||
-        ""
+      content.hero?.subtitle ||
+      ""
     );
 
     setText(
       "#footer-copyright",
       footer.copyright ||
-        `© ${new Date().getFullYear()} ${
-          site.name || ""
-        }. All rights reserved.`
+      `© ${new Date().getFullYear()} ${
+        site.name || ""
+      }. All rights reserved.`
     );
 
-    const privacyLink =
+    const privacy =
       $("#openPrivacy");
 
     if (
-      privacyLink &&
+      privacy &&
       footer.privacy
     ) {
-      privacyLink.textContent =
+      privacy.textContent =
         footer.privacy;
     }
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      TRUST STRIP
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderTrust(content) {
     const section =
@@ -1184,18 +1216,25 @@
 
     trust.items.forEach(
       item => {
+
         const element =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         element.className =
           "trust-item";
 
         if (
-          typeof item === "string"
+          typeof item ===
+          "string"
         ) {
+
           element.textContent =
             item;
+
         } else {
+
           element.innerHTML = `
             <strong>
               ${escapeHTML(item.title || "")}
@@ -1205,6 +1244,7 @@
               ${escapeHTML(item.text || "")}
             </span>
           `;
+
         }
 
         container.appendChild(
@@ -1215,28 +1255,33 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      DISCLAIMER
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function renderDisclaimer(content) {
-    const disclaimer =
-      content.disclaimer;
-
     const element =
       $("#disclaimer-text");
 
     if (!element) return;
 
-    if (typeof disclaimer === "string") {
+    const disclaimer =
+      content.disclaimer;
+
+    if (
+      typeof disclaimer ===
+      "string"
+    ) {
       element.textContent =
         disclaimer;
+
       return;
     }
 
     if (
       disclaimer &&
-      typeof disclaimer.text === "string"
+      typeof disclaimer.text ===
+      "string"
     ) {
       element.textContent =
         disclaimer.text;
@@ -1244,9 +1289,9 @@
   }
 
 
-  /* -------------------------------------------------------
-     STICKY MOBILE PURCHASE
-  ------------------------------------------------------- */
+  /* =========================================================
+     MOBILE STICKY PURCHASE
+     ========================================================= */
 
   function updateStickyPurchase(book) {
     const bar =
@@ -1288,16 +1333,16 @@
       );
     }
 
-    if (
+    const canPurchase =
       book?.status === "available" &&
-      isSafeURL(book?.checkout)
-    ) {
-      bar.dataset.purchaseAvailable =
-        "true";
-    } else {
-      bar.dataset.purchaseAvailable =
-        "false";
+      isSafeURL(book?.checkout);
 
+    bar.dataset.purchaseAvailable =
+      canPurchase
+        ? "true"
+        : "false";
+
+    if (!canPurchase) {
       bar.classList.remove(
         "visible"
       );
@@ -1314,7 +1359,9 @@
 
     if (
       !bar ||
-      !hero
+      !hero ||
+      typeof IntersectionObserver ===
+        "undefined"
     ) {
       return;
     }
@@ -1322,33 +1369,41 @@
     const observer =
       new IntersectionObserver(
         entries => {
-          entries.forEach(entry => {
 
-            const book =
-              state.selectedBook ||
-              state.featuredBook;
+          entries.forEach(
+            entry => {
 
-            const canShow =
-              book?.status ===
-                "available" &&
-              isSafeURL(
-                book?.checkout
-              );
+              const book =
+                state.selectedBook ||
+                state.featuredBook;
 
-            if (
-              !entry.isIntersecting &&
-              canShow
-            ) {
-              bar.classList.add(
-                "visible"
-              );
-            } else {
-              bar.classList.remove(
-                "visible"
-              );
+              const canShow =
+                book?.status ===
+                  "available" &&
+                isSafeURL(
+                  book?.checkout
+                );
+
+              if (
+                !entry.isIntersecting &&
+                canShow
+              ) {
+
+                bar.classList.add(
+                  "visible"
+                );
+
+              } else {
+
+                bar.classList.remove(
+                  "visible"
+                );
+
+              }
+
             }
+          );
 
-          });
         },
         {
           threshold: 0
@@ -1359,9 +1414,9 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      PRIVACY MODAL
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function setupPrivacyModal() {
     const modal =
@@ -1384,9 +1439,11 @@
       return;
     }
 
-    let previousFocus = null;
+    let previousFocus =
+      null;
 
     function openModal(event) {
+
       if (event) {
         event.preventDefault();
       }
@@ -1410,7 +1467,9 @@
       closeButton.focus();
     }
 
+
     function closeModal() {
+
       modal.classList.remove(
         "is-open"
       );
@@ -1433,6 +1492,7 @@
       }
     }
 
+
     openButton.addEventListener(
       "click",
       openModal
@@ -1453,6 +1513,7 @@
     document.addEventListener(
       "keydown",
       event => {
+
         if (
           event.key === "Escape" &&
           modal.classList.contains(
@@ -1461,14 +1522,15 @@
         ) {
           closeModal();
         }
+
       }
     );
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      SMOOTH SCROLL
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function setupSmoothScroll() {
     document.addEventListener(
@@ -1525,9 +1587,45 @@
   }
 
 
-  /* -------------------------------------------------------
-     IMAGE FALLBACKS
-  ------------------------------------------------------- */
+  /* =========================================================
+     IMAGE HANDLING
+     
+     Images now come directly from content.json.
+     No assets/ folder is required.
+     ========================================================= */
+
+  function setImage(
+    image,
+    url,
+    alt
+  ) {
+    if (!image) return;
+
+    image.alt =
+      alt || "";
+
+    image.classList.remove(
+      "image-error"
+    );
+
+    if (
+      isSafeURL(url)
+    ) {
+      image.src =
+        url;
+
+      return;
+    }
+
+    image.removeAttribute(
+      "src"
+    );
+
+    image.classList.add(
+      "image-error"
+    );
+  }
+
 
   function setupImageFallbacks() {
     $$("img").forEach(
@@ -1551,11 +1649,11 @@
               "image-error"
             );
 
-            /*
-             * We deliberately do not replace
-             * the image with an invented URL.
-             * CSS can style .image-error.
-             */
+            console.warn(
+              "Image could not be loaded:",
+              image.src
+            );
+
           }
         );
       }
@@ -1563,9 +1661,9 @@
   }
 
 
-  /* -------------------------------------------------------
-     LOADING STATE
-  ------------------------------------------------------- */
+  /* =========================================================
+     LOADING / ERROR
+     ========================================================= */
 
   function showLoadingState() {
     document.body.classList.add(
@@ -1585,10 +1683,6 @@
   }
 
 
-  /* -------------------------------------------------------
-     ERROR STATE
-  ------------------------------------------------------- */
-
   function showErrorState(error) {
     console.error(
       "Storefront error:",
@@ -1603,27 +1697,21 @@
       "content-error"
     );
 
-    const title =
-      $("#hero-title");
+    setText(
+      "#hero-title",
+      "The storefront is loading."
+    );
 
-    const description =
-      $("#hero-description");
-
-    if (title) {
-      title.textContent =
-        "The storefront is loading.";
-    }
-
-    if (description) {
-      description.textContent =
-        "Please refresh the page and try again.";
-    }
+    setText(
+      "#hero-description",
+      "Please refresh the page and try again."
+    );
   }
 
 
-  /* -------------------------------------------------------
-     CONTENT LOADING
-  ------------------------------------------------------- */
+  /* =========================================================
+     LOAD CONTENT.JSON
+     ========================================================= */
 
   async function loadContent() {
     const response =
@@ -1648,7 +1736,7 @@
       typeof data !== "object"
     ) {
       throw new Error(
-        "content.json returned invalid data."
+        "content.json contains invalid data."
       );
     }
 
@@ -1659,11 +1747,12 @@
   }
 
 
-  /* -------------------------------------------------------
-     MAIN RENDER
-  ------------------------------------------------------- */
+  /* =========================================================
+     RENDER EVERYTHING
+     ========================================================= */
 
   function renderSite(content) {
+
     state.featuredBook =
       findFeaturedBook();
 
@@ -1706,7 +1795,10 @@
       content
     );
 
-    if (state.featuredBook) {
+    if (
+      state.featuredBook
+    ) {
+
       renderBookDetails(
         state.featuredBook
       );
@@ -1724,22 +1816,22 @@
       );
     }
 
-    applyCheckoutLinks();
-
     setupCheckoutTracking();
 
     setupImageFallbacks();
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      INITIALIZATION
-  ------------------------------------------------------- */
+     ========================================================= */
 
   async function init() {
+
     showLoadingState();
 
     try {
+
       const content =
         await loadContent();
 
@@ -1750,18 +1842,21 @@
       hideLoadingState();
 
     } catch (error) {
+
       showErrorState(
         error
       );
+
     }
   }
 
 
-  /* -------------------------------------------------------
-     GLOBAL UI SETUP
-  ------------------------------------------------------- */
+  /* =========================================================
+     UI INITIALIZATION
+     ========================================================= */
 
   function setupUI() {
+
     setupPrivacyModal();
 
     setupSmoothScroll();
@@ -1772,11 +1867,12 @@
   }
 
 
-  /* -------------------------------------------------------
+  /* =========================================================
      START
-  ------------------------------------------------------- */
+     ========================================================= */
 
   function start() {
+
     setupUI();
 
     init();
@@ -1787,6 +1883,7 @@
     document.readyState ===
     "loading"
   ) {
+
     document.addEventListener(
       "DOMContentLoaded",
       start,
@@ -1794,8 +1891,11 @@
         once: true
       }
     );
+
   } else {
+
     start();
+
   }
 
 })();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-NG">
+
 <head>
   <meta charset="UTF-8" />
 
@@ -10,7 +11,7 @@
 
   <meta
     name="description"
-    content="The practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO."
+    content="Practical digital books on money, business and opportunity."
   />
 
   <meta
@@ -35,7 +36,10 @@
 
   <title>DANGOTE IPO DECODED™</title>
 
-  <!-- Fonts -->
+  <!-- =====================================================
+       FONTS
+  ====================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -44,102 +48,61 @@
     rel="stylesheet"
   />
 
-  <!-- Main stylesheet -->
+  <!-- =====================================================
+       STYLESHEET
+  ====================================================== -->
+
   <link
     rel="stylesheet"
     href="style.css"
   />
+
 </head>
+
 
 <body id="top">
 
+
   <!-- =====================================================
-       HEADER
+       MINIMAL TOP BRAND
+       NO NAVIGATION HEADER
   ====================================================== -->
 
-  <header class="site-header">
+  <div class="storefront-brand">
 
-    <div class="container header-inner">
-
-      <a
-        href="#top"
-        class="brand"
-        aria-label="DANGOTE IPO DECODED home"
-      >
-        <span class="brand-main">
-          DANGOTE IPO DECODED™
-        </span>
-
-        <span class="brand-sub">
-          Practical Nigerian Financial Education
-        </span>
-      </a>
-
-      <button
-        class="menu-toggle"
-        type="button"
-        data-menu-toggle
-        aria-label="Open navigation"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav
-        class="desktop-nav"
-        aria-label="Main navigation"
-      >
-        <a href="#learning">Learn</a>
-        <a href="#toolkit">Toolkit</a>
-        <a href="#bookshelf">Books</a>
-        <a href="#faq">FAQ</a>
-
-        <a
-          href="#purchase"
-          class="button button-small button-primary"
-        >
-          Get the Book
-        </a>
-      </nav>
-
-    </div>
-
-    <!-- Mobile Navigation -->
-
-    <nav
-      id="mobile-menu"
-      class="mobile-menu"
-      data-mobile-menu
-      aria-label="Mobile navigation"
+    <a
+      href="#top"
+      aria-label="Back to top"
     >
-      <a href="#learning">Learn</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#bookshelf">Books</a>
-      <a href="#faq">FAQ</a>
+      <span class="brand-main">
+        DANGOTE IPO DECODED™
+      </span>
 
-      <a
-        href="#purchase"
-        class="button button-primary"
-      >
-        Get the Book
-      </a>
-    </nav>
+      <span class="brand-sub">
+        Digital Edition
+      </span>
+    </a>
 
-  </header>
+  </div>
 
+
+  <!-- =====================================================
+       MAIN STOREFRONT
+  ====================================================== -->
 
   <main>
 
+
     <!-- ===================================================
-         HERO
+         HERO / FIRST IMPRESSION
     ==================================================== -->
 
-    <section class="hero">
+    <section class="hero storefront-hero">
 
       <div class="container hero-grid">
+
+
+        <!-- HERO COPY -->
 
         <div class="hero-content">
 
@@ -150,10 +113,12 @@
             THE PRACTICAL NIGERIAN IPO GUIDE
           </p>
 
+
           <h1 id="hero-title">
             Understand the offer before you decide what to do
             with it.
           </h1>
+
 
           <p
             class="hero-subtitle"
@@ -161,6 +126,7 @@
           >
             DANGOTE IPO DECODED™
           </p>
+
 
           <p
             class="hero-description"
@@ -170,28 +136,36 @@
             preparing for the Dangote Refinery IPO.
           </p>
 
+
           <div class="hero-actions">
 
             <a
               href="#purchase"
-              class="button button-primary"
+              class="button button-primary button-large"
               data-primary-cta
             >
               Get the Book
             </a>
 
             <a
-              href="#learning"
+              href="#bookshelf"
               class="button button-secondary"
-              id="hero-secondary-cta"
             >
-              See What You'll Learn
+              View Books
             </a>
 
           </div>
 
+
+          <div
+            class="hero-meta"
+            id="hero-meta"
+          ></div>
+
         </div>
 
+
+        <!-- HERO BOOK -->
 
         <div class="hero-visual">
 
@@ -216,8 +190,9 @@
     </section>
 
 
+
     <!-- ===================================================
-         TRUST STRIP
+         TRUST / MICRO INFORMATION
     ==================================================== -->
 
     <section class="trust-strip">
@@ -230,31 +205,139 @@
     </section>
 
 
+
     <!-- ===================================================
-         BOOKSHELF
-         TWO-BOOK STOREFRONT
+         FEATURED BOOK
     ==================================================== -->
 
     <section
-      class="section bookshelf-section"
+      class="section featured-book-section"
+      id="featured-book"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            FEATURED
+          </p>
+
+          <h2 id="featured-title">
+            DANGOTE IPO DECODED™
+          </h2>
+
+          <p id="featured-description">
+            The practical Nigerian guide to understanding,
+            evaluating and preparing for the Dangote Refinery
+            IPO.
+          </p>
+
+        </div>
+
+
+        <div class="featured-book-card">
+
+
+          <!-- COVER -->
+
+          <div class="featured-book-cover">
+
+            <img
+              id="featured-book-image"
+              src="assets/book-mockup.png"
+              alt="DANGOTE IPO DECODED book"
+              loading="lazy"
+            />
+
+          </div>
+
+
+          <!-- INFORMATION -->
+
+          <div class="featured-book-info">
+
+            <div
+              class="book-badge"
+              id="featured-badge"
+            >
+              FLAGSHIP
+            </div>
+
+
+            <p
+              class="book-hook"
+              id="featured-hook"
+            >
+              Understand the offer before you decide what to do
+              with it.
+            </p>
+
+
+            <ul
+              class="book-highlights"
+              id="featured-highlights"
+            ></ul>
+
+
+            <div class="featured-book-purchase">
+
+              <div class="book-price">
+
+                <span class="price-label">
+                  DIGITAL EDITION
+                </span>
+
+                <strong id="featured-price">
+                  See current price
+                </strong>
+
+              </div>
+
+
+              <a
+                href="#"
+                class="button button-primary button-large"
+                data-featured-checkout
+              >
+                Get the Book
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         COLLECTION
+    ==================================================== -->
+
+    <section
+      class="section bookshelf-section section-soft"
       id="bookshelf"
     >
 
       <div class="container">
 
-        <div class="section-heading centered">
+        <div class="section-heading">
 
           <p class="eyebrow">
-            THE BOOKSHELF
+            THE COLLECTION
           </p>
 
           <h2>
-            Learn before you decide.
+            More books.
           </h2>
 
           <p>
-            Practical financial-education guides designed to
-            make complex ideas easier to understand.
+            Practical ideas. Straight to the point.
           </p>
 
         </div>
@@ -265,7 +348,9 @@
           id="bookshelf-grid"
         >
 
-          <!-- Populated from content.json -->
+          <!--
+            Books are generated from content.json
+          -->
 
         </div>
 
@@ -274,249 +359,90 @@
     </section>
 
 
+
     <!-- ===================================================
-         PROBLEM
+         BOOK DETAILS
+         DYNAMIC DETAILS FOR SELECTED BOOK
     ==================================================== -->
 
     <section
-      class="section section-soft"
-      id="problem"
+      class="section book-details-section"
+      id="book-details"
     >
 
       <div class="container">
 
-        <div class="section-heading">
+        <div class="book-details-grid">
 
-          <p
-            class="eyebrow"
-            id="problem-eyebrow"
-          >
-            THE PROBLEM
-          </p>
 
-          <h2 id="problem-title">
-            An IPO can look simple until you actually try
-            to understand it.
-          </h2>
+          <div class="book-details-cover">
 
-          <p id="problem-description"></p>
+            <img
+              id="details-book-image"
+              src=""
+              alt=""
+              loading="lazy"
+            />
 
-        </div>
+          </div>
 
 
-        <div
-          class="question-grid"
-          id="problem-cards"
-        ></div>
+          <div class="book-details-content">
 
-      </div>
+            <p
+              class="eyebrow"
+              id="details-eyebrow"
+            >
+              BOOK
+            </p>
 
-    </section>
 
+            <h2 id="details-title">
+              DANGOTE IPO DECODED™
+            </h2>
 
-    <!-- ===================================================
-         PROMISE
-    ==================================================== -->
 
-    <section
-      class="section"
-      id="promise"
-    >
+            <p
+              class="book-hook"
+              id="details-hook"
+            ></p>
 
-      <div class="container two-column">
 
-        <div class="section-heading">
+            <p
+              id="details-description"
+            ></p>
 
-          <p class="eyebrow">
-            THE PROMISE
-          </p>
 
-          <h2>
-            Clarity without the hype.
-          </h2>
+            <ul
+              class="book-highlights"
+              id="details-highlights"
+            ></ul>
 
-          <p>
-            This book is designed to help you build
-            understanding and judgment—not to tell you what
-            decision to make.
-          </p>
 
-        </div>
+            <div class="details-action">
 
+              <strong id="details-price">
+                See current price
+              </strong>
 
-        <div class="promise-panel">
+              <a
+                href="#"
+                class="button button-primary"
+                data-details-checkout
+              >
+                Get the Book
+              </a>
 
-          <ul
-            class="check-list"
-            id="promise-list"
-          ></ul>
+            </div>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         DECISION FLOW
-    ==================================================== -->
-
-    <section
-      class="section section-dark"
-      id="framework"
-    >
-
-      <div class="container">
-
-        <div class="section-heading section-heading-dark">
-
-          <p class="eyebrow">
-            THE FRAMEWORK
-          </p>
-
-          <h2>
-            Seven steps from information to informed judgment.
-          </h2>
-
-          <p>
-            A practical sequence designed to reduce confusion
-            and improve decision quality.
-          </p>
-
-        </div>
-
-
-        <div
-          class="decision-flow"
-          id="decision-flow"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         DECISION OS
-    ==================================================== -->
-
-    <section
-      class="section"
-      id="decision-os"
-    >
-
-      <div class="container">
-
-        <div class="section-heading centered">
-
-          <p class="eyebrow">
-            THE DECISION OS
-          </p>
-
-          <h2>
-            A mental model you can use beyond this IPO.
-          </h2>
-
-          <p>
-            The Dangote Refinery IPO is the case study.
-            The framework is broader financial education.
-          </p>
-
-        </div>
-
-
-        <div
-          class="os-grid"
-          id="decision-os-grid"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         WHAT YOU'LL LEARN
-    ==================================================== -->
-
-    <section
-      class="section section-soft"
-      id="learning"
-    >
-
-      <div class="container">
-
-        <div class="section-heading centered">
-
-          <p class="eyebrow">
-            WHAT YOU'LL LEARN
-          </p>
-
-          <h2>
-            Built for the person who wants the explanation—not
-            the noise.
-          </h2>
-
-          <p>
-            IPO concepts translated into practical Nigerian
-            financial education.
-          </p>
-
-        </div>
-
-
-        <div
-          class="learning-grid"
-          id="learning-grid"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         TOOLKIT
-    ==================================================== -->
-
-    <section
-      class="section"
-      id="toolkit"
-    >
-
-      <div class="container two-column">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            THE PRACTICAL TOOLKIT
-          </p>
-
-          <h2>
-            Not just something to read. Something to use.
-          </h2>
-
-          <p>
-            Practical frameworks designed to turn information
-            into structured evaluation.
-          </p>
-
-        </div>
-
-
-        <div class="toolkit-panel">
-
-          <ul
-            class="toolkit-list"
-            id="toolkit-list"
-          ></ul>
+          </div>
 
         </div>
 
       </div>
 
     </section>
+
 
 
     <!-- ===================================================
@@ -524,26 +450,21 @@
     ==================================================== -->
 
     <section
-      class="section section-soft"
+      class="section preview-section"
       id="preview"
     >
 
       <div class="container">
 
-        <div class="section-heading centered">
+        <div class="section-heading">
 
           <p class="eyebrow">
-            INSIDE THE BOOK
+            INSIDE
           </p>
 
           <h2>
-            A preview of the learning experience.
+            Take a look inside.
           </h2>
-
-          <p>
-            See how the guide turns complex concepts into
-            practical understanding.
-          </p>
 
         </div>
 
@@ -554,6 +475,7 @@
             class="preview-track"
             id="preview-track"
           ></div>
+
 
           <div
             class="preview-dots"
@@ -568,167 +490,34 @@
     </section>
 
 
+
     <!-- ===================================================
-         AUDIENCE
+         SHORT VALUE STATEMENT
     ==================================================== -->
 
-    <section
-      class="section"
-      id="audience"
-    >
+    <section class="section short-about">
 
       <div class="container">
 
-        <div class="section-heading centered">
+        <div class="short-about-card">
 
-          <p class="eyebrow">
-            WHO IT'S FOR
+          <p
+            class="eyebrow"
+            id="about-eyebrow"
+          >
+            ABOUT
           </p>
 
-          <h2>
-            For Nigerians who want to understand—not simply
-            follow.
+
+          <h2 id="about-title">
+            Practical books. No unnecessary noise.
           </h2>
 
-          <p>
-            You do not need to be a professional investor to
-            benefit from a structured explanation.
-          </p>
-
-        </div>
-
-
-        <div
-          class="audience-list"
-          id="audience-list"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PHILOSOPHY
-    ==================================================== -->
-
-    <section
-      class="section section-dark philosophy-section"
-      id="philosophy"
-    >
-
-      <div class="container two-column">
-
-        <div class="section-heading section-heading-dark">
-
-          <p class="eyebrow">
-            THE PHILOSOPHY
-          </p>
-
-          <h2>
-            Evidence over hype.
-          </h2>
-
-          <p>
-            The goal is not to create excitement around an IPO.
-            The goal is to improve the quality of your
-            understanding and judgment.
-          </p>
-
-        </div>
-
-
-        <div class="philosophy-panel">
-
-          <ul
-            id="philosophy-list"
-            class="philosophy-list"
-          ></ul>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         WHY THIS BOOK
-    ==================================================== -->
-
-    <section
-      class="section"
-      id="why"
-    >
-
-      <div class="container">
-
-        <div class="section-heading centered">
-
-          <p class="eyebrow">
-            WHY THIS BOOK
-          </p>
-
-          <h2>
-            One case study. One practical framework.
-          </h2>
-
-          <p>
-            The Dangote Refinery IPO provides the real-world
-            context. The underlying lessons are broader.
-          </p>
-
-        </div>
-
-
-        <div
-          class="why-grid"
-          id="why-grid"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         ABOUT
-    ==================================================== -->
-
-    <section
-      class="section section-soft"
-      id="about"
-    >
-
-      <div class="container two-column about-grid">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            ABOUT THE GUIDE
-          </p>
-
-          <h2>
-            A financial-education resource built around one
-            simple principle.
-          </h2>
 
           <p id="about-description">
-            Understand the offer before you decide what to do
-            with it.
+            Digital books designed to make complicated
+            financial and business ideas easier to understand.
           </p>
-
-        </div>
-
-
-        <div class="about-visual">
-
-          <img
-            id="about-image"
-            src=""
-            alt=""
-            loading="lazy"
-          />
 
         </div>
 
@@ -737,31 +526,27 @@
     </section>
 
 
+
     <!-- ===================================================
-         FAQ
+         FAQ — MINIMAL
     ==================================================== -->
 
     <section
-      class="section"
+      class="section faq-section"
       id="faq"
     >
 
-      <div class="container faq-container">
+      <div class="container narrow-container">
 
-        <div class="section-heading centered">
+        <div class="section-heading">
 
           <p class="eyebrow">
             FAQ
           </p>
 
           <h2>
-            Questions you may have.
+            Before you buy.
           </h2>
-
-          <p>
-            A few important things to know before getting
-            the guide.
-          </p>
 
         </div>
 
@@ -776,8 +561,9 @@
     </section>
 
 
+
     <!-- ===================================================
-         PURCHASE CTA
+         PURCHASE
     ==================================================== -->
 
     <section
@@ -789,19 +575,21 @@
 
         <div class="purchase-card">
 
+
           <div class="purchase-content">
 
             <p class="eyebrow">
-              READY TO UNDERSTAND IT?
+              GET THE BOOK
             </p>
 
-            <h2>
-              Don't let the noise make the decision for you.
+
+            <h2 id="purchase-title">
+              DANGOTE IPO DECODED™
             </h2>
 
-            <p>
-              Build the knowledge, questions and framework you
-              need to evaluate an IPO for yourself.
+
+            <p id="purchase-description">
+              Understand. Verify. Evaluate. Prepare.
             </p>
 
           </div>
@@ -818,6 +606,7 @@
               Get DANGOTE IPO DECODED™
             </a>
 
+
             <small>
               Secure checkout powered by Selar.
             </small>
@@ -831,14 +620,12 @@
     </section>
 
 
+
     <!-- ===================================================
          DISCLAIMER
     ==================================================== -->
 
-    <section
-      class="disclaimer-section"
-      id="disclaimer"
-    >
+    <section class="disclaimer-section">
 
       <div class="container">
 
@@ -855,6 +642,7 @@
   </main>
 
 
+
   <!-- =====================================================
        FOOTER
   ====================================================== -->
@@ -863,24 +651,42 @@
 
     <div class="container footer-inner">
 
-      <div>
 
-        <div class="footer-brand">
+      <div class="footer-brand">
+
+        <strong>
           DANGOTE IPO DECODED™
-        </div>
+        </strong>
 
-        <p id="footer-text">
+        <span id="footer-text">
           Understand. Verify. Evaluate. Prepare.
-        </p>
+        </span>
 
       </div>
 
 
-      <nav
-        class="footer-links"
-        id="footer-links"
-        aria-label="Footer navigation"
-      ></nav>
+      <div class="footer-links">
+
+        <a href="#bookshelf">
+          Books
+        </a>
+
+        <a href="#preview">
+          Preview
+        </a>
+
+        <a href="#faq">
+          FAQ
+        </a>
+
+        <a
+          href="#"
+          id="openPrivacy"
+        >
+          Privacy Policy
+        </a>
+
+      </div>
 
 
       <div class="footer-copyright">
@@ -896,13 +702,112 @@
   </footer>
 
 
+
   <!-- =====================================================
-       MOBILE STICKY PURCHASE BAR
+       PRIVACY MODAL
+  ====================================================== -->
+
+  <div
+    class="privacy-modal"
+    id="privacyModal"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="privacy-title"
+  >
+
+    <div class="privacy-modal-backdrop"></div>
+
+
+    <div class="privacy-modal-content">
+
+      <button
+        type="button"
+        class="privacy-close"
+        id="closePrivacy"
+        aria-label="Close Privacy Policy"
+      >
+        ×
+      </button>
+
+
+      <p class="eyebrow">
+        LEGAL
+      </p>
+
+
+      <h2 id="privacy-title">
+        Privacy Policy
+      </h2>
+
+
+      <div class="privacy-copy">
+
+        <p>
+          This website respects your privacy and is designed
+          to collect only information necessary to provide its
+          services.
+        </p>
+
+
+        <h3>
+          Information
+        </h3>
+
+        <p>
+          Personal information is not intentionally collected
+          through this storefront unless you voluntarily
+          provide it through an available service or checkout
+          provider.
+        </p>
+
+
+        <h3>
+          Third-Party Services
+        </h3>
+
+        <p>
+          Purchases may be processed through third-party
+          services such as Selar. Those services operate under
+          their own privacy policies and terms.
+        </p>
+
+
+        <h3>
+          External Links
+        </h3>
+
+        <p>
+          Links to external websites are provided for their
+          intended purpose. Their privacy practices are
+          governed by their respective policies.
+        </p>
+
+
+        <h3>
+          Updates
+        </h3>
+
+        <p>
+          This policy may be updated when the website,
+          services or data practices change.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       MOBILE STICKY PURCHASE
   ====================================================== -->
 
   <div
     class="mobile-sticky-purchase"
-    aria-label="Purchase DANGOTE IPO DECODED"
+    aria-label="Purchase book"
   >
 
     <div class="mobile-sticky-info">
@@ -912,10 +817,11 @@
       </strong>
 
       <span>
-        Understand before you decide.
+        Digital Edition
       </span>
 
     </div>
+
 
     <a
       href="#"
@@ -928,8 +834,9 @@
   </div>
 
 
+
   <!-- =====================================================
-       APP SCRIPT
+       APP
   ====================================================== -->
 
   <script
@@ -937,5 +844,7 @@
     defer
   ></script>
 
+
 </body>
+
 </html>

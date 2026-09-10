@@ -71,13 +71,13 @@
 
         "title": "DANGOTE IPO DECODED™",
 
-        "shortDescription": "The practical Nigerian guide to understanding, evaluating and preparing for the Dangote Refinery IPO.",
+        "shortDescription": "A practical Nigerian guide to understanding the Dangote Refinery IPO—from what an IPO and shares mean to verifying information, examining the business and financials, understanding valuation and risk, preparing for participation, and making an informed independent judgment.",
 
-        "hook": "Understand the offer before you decide what to do with it.",
+        "hook": "Instead of asking only whether you should participate, learn how to understand what is being offered, what the information means, what could go wrong, and what you still need to know before deciding.",
 
-        "cover": "https://i.postimg.cc/Jyhwgh6Z/43A0FCA1-BA30-4FD0-A561-77800EC21D6B.png",
+        "cover": "https://i.postimg.cc/Ny0hV0JX/IMG-1087.jpg",
 
-        "price": "See current price",
+        "price": "₦2,333",
 
         "cta": "Get the Book",
 
@@ -85,23 +85,22 @@
 
         "tags": [
           "IPO",
+          "Dangote Refinery",
           "Nigeria",
-          "Financial Education"
+          "Financial Education",
+          "Investment Analysis"
         ],
 
         "highlights": [
-          "Understand how IPOs work",
-          "Read the important numbers",
-          "Evaluate the business",
-          "Understand the risks",
-          "Build your own decision framework"
+          "Understand how IPOs, shares, ownership, offer prices, market prices, subscription, allotment, and listing fit together.",
+          "Learn how to identify authoritative information, verify changing IPO claims, and distinguish facts from interpretation and speculation.",
+          "Examine the refinery business, its operating drivers, financial information, valuation concepts, and the difference between price and value.",
+          "Use practical calculations and structured frameworks to understand subscription costs, financial information, valuation considerations, and investment risks.",
+          "Recognize FOMO, social proof, anchoring, overconfidence, and other behavioral biases that can affect financial decision-making.",
+          "Follow a repeatable process—UNDERSTAND → VERIFY → EVALUATE → CALCULATE → PREPARE → DECIDE → MONITOR—without the book making the investment decision for you."
         ],
 
-        "preview": [
-          "assets/preview-01.png",
-          "assets/preview-02.png",
-          "assets/preview-03.png"
-        ]
+        "preview": []
       },
 
       {
@@ -121,7 +120,7 @@
 
         "hook": "Understand the digital world. Think better inside it.",
 
-        "cover": "https://i.postimg.cc/Ny0hV0JX/IMG-1087.jpg",
+        "cover": "https://i.postimg.cc/Jyhwgh6Z/43A0FCA1-BA30-4FD0-A561-77800EC21D6B.png",
 
         "price": "See current price",
 
@@ -141,49 +140,6 @@
           "Think more clearly about technology",
           "Build better digital awareness",
           "Apply ideas to everyday life"
-        ],
-
-        "preview": []
-      },
-
-      {
-        "id": "monetization-architecture",
-
-        "status": "coming-soon",
-
-        "featured": false,
-
-        "badge": "COMING SOON",
-
-        "number": "03",
-
-        "title": "MONETIZATION ARCHITECTURE™",
-
-        "shortDescription": "A practical look at how digital platforms turn users, vendors, affiliates and transactions into sustainable revenue.",
-
-        "hook": "Build the money system behind the platform.",
-
-        "cover": "assets/monetization-architecture.png",
-
-        "price": "Coming Soon",
-
-        "cta": "Coming Soon",
-
-        "checkout": "#",
-
-        "tags": [
-          "Monetization",
-          "Affiliate",
-          "Advertising",
-          "Platforms"
-        ],
-
-        "highlights": [
-          "Affiliate commissions",
-          "Advertising models",
-          "Vendor economics",
-          "Audience rewards",
-          "Revenue sharing"
         ],
 
         "preview": []

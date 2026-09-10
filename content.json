@@ -8,9 +8,11 @@
   },
 
   "seo": {
-    "title": "DANGOTE IPO DECODED™",
-    "description": "Practical digital books for understanding business, money and opportunities.",
+    "title": "DANGOTE IPO DECODED™ | Digital Books",
+    "description": "Practical digital books for understanding money, business and opportunity.",
     "keywords": [
+      "DANGOTE IPO DECODED",
+      "Dangote Refinery IPO",
       "Nigerian business books",
       "digital business books",
       "financial education",
@@ -18,16 +20,11 @@
     ]
   },
 
-  "checkout": {
-    "provider": "Selar",
-    "url": "YOUR_ACTUAL_SELAR_CHECKOUT_URL"
-  },
-
   "navigation": {
     "links": [
       {
         "label": "Books",
-        "target": "#books"
+        "target": "#bookshelf"
       },
       {
         "label": "About",
@@ -37,7 +34,7 @@
 
     "primaryAction": {
       "label": "Shop Now",
-      "target": "#books"
+      "target": "#bookshelf"
     }
   },
 
@@ -48,7 +45,9 @@
 
     "subtitle": "Practical ideas for understanding money, business and opportunity.",
 
-    "primaryCTA": "Shop the Books",
+    "description": "Practical digital books designed to help you understand important ideas clearly and make better-informed decisions.",
+
+    "primaryCTA": "Get the Book",
 
     "secondaryCTA": "View Collection"
   },
@@ -59,7 +58,6 @@
     "title": "Choose your book.",
 
     "books": [
-
       {
         "id": "dangote-ipo-decoded",
 
@@ -77,13 +75,13 @@
 
         "hook": "Understand the offer before you decide what to do with it.",
 
-        "cover": "assets/book-mockup.png",
+        "cover": "https://i.postimg.cc/Jyhwgh6Z/43A0FCA1-BA30-4FD0-A561-77800EC21D6B.png",
 
         "price": "See current price",
 
         "cta": "Get the Book",
 
-        "checkout": "YOUR_ACTUAL_SELAR_CHECKOUT_URL",
+        "checkout": "https://selar.com/ak798k7597",
 
         "tags": [
           "IPO",
@@ -107,44 +105,42 @@
       },
 
       {
-        "id": "behavioral-platform-architecture",
+        "id": "digital-mind",
 
-        "status": "coming-soon",
+        "status": "available",
 
         "featured": false,
 
-        "badge": "COMING SOON",
+        "badge": "NEW",
 
         "number": "02",
 
-        "title": "BEHAVIORAL PLATFORM ARCHITECTURE™",
+        "title": "DIGITAL MIND",
 
-        "shortDescription": "How psychology, behavioral economics and product design come together inside modern platforms.",
+        "shortDescription": "A practical digital book exploring the ideas, habits and thinking patterns needed to navigate the modern digital world.",
 
-        "hook": "Understand the systems behind attention, action, retention and monetization.",
+        "hook": "Understand the digital world. Think better inside it.",
 
-        "cover": "assets/behavioral-platform-architecture.png",
+        "cover": "https://i.postimg.cc/Ny0hV0JX/IMG-1087.jpg",
 
-        "price": "Coming Soon",
+        "price": "See current price",
 
-        "cta": "Coming Soon",
+        "cta": "Get the Book",
 
-        "checkout": "#",
+        "checkout": "https://selar.com/o19419or39",
 
         "tags": [
-          "Behavior",
-          "Platforms",
-          "Psychology",
-          "Business"
+          "Digital",
+          "Mindset",
+          "Ideas"
         ],
 
         "highlights": [
-          "FOMO",
-          "Anchoring",
-          "Loss aversion",
-          "Present bias",
-          "Endowment effect",
-          "Reward systems"
+          "Understand digital thinking",
+          "Recognize modern digital patterns",
+          "Think more clearly about technology",
+          "Build better digital awareness",
+          "Apply ideas to everyday life"
         ],
 
         "preview": []
@@ -200,19 +196,24 @@
 
     "title": "Practical books. No unnecessary noise.",
 
-    "text": "A collection of practical digital books designed to make complicated business, financial and platform concepts easier to understand and apply."
+    "text": "A collection of practical digital books designed to make complicated business, financial and digital concepts easier to understand and apply."
   },
 
   "faq": {
     "items": [
       {
         "question": "Are these physical books?",
-        "answer": "The collection is designed as digital books."
+        "answer": "No. The collection is made up of digital books."
       },
 
       {
         "question": "Where do I purchase a book?",
-        "answer": "Available books can be purchased through the checkout button."
+        "answer": "Available books can be purchased through their individual checkout buttons."
+      },
+
+      {
+        "question": "How do I receive my book?",
+        "answer": "After completing your purchase, delivery is handled through the checkout platform."
       },
 
       {
@@ -222,8 +223,12 @@
     ]
   },
 
+  "disclaimer": {
+    "text": "DANGOTE IPO DECODED™ is an educational resource and is not individualized financial, investment, legal or tax advice."
+  },
+
   "footer": {
-    "copyright": "© 2026. All rights reserved.",
+    "copyright": "© 2026 DANGOTE IPO DECODED™. All rights reserved.",
     "privacy": "Privacy Policy"
   }
 }

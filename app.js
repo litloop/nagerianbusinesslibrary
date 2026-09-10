@@ -1,6 +1,6 @@
 /* =========================================================
    DANGOTE IPO DECODED™
-   Mobile-First Link-in-Bio / Two-Book Storefront
+   STOREFRONT APPLICATION
    app.js
    ========================================================= */
 
@@ -15,9 +15,11 @@
 
   const state = {
     content: null,
-    currentPreview: 0,
-    mobileMenuOpen: false
+    selectedBook: null,
+    featuredBook: null,
+    previewIndex: 0
   };
+
 
   /* -------------------------------------------------------
      DOM HELPERS
@@ -27,94 +29,149 @@
     parent.querySelector(selector);
 
   const $$ = (selector, parent = document) =>
-    [...parent.querySelectorAll(selector)];
+    Array.from(parent.querySelectorAll(selector));
 
-  const setText = (selector, value) => {
-    const element = $(selector);
-
-    if (element && value !== undefined && value !== null) {
-      element.textContent = value;
-    }
-  };
-
-  const setHTML = (selector, value) => {
-    const element = $(selector);
-
-    if (element && value !== undefined && value !== null) {
-      element.innerHTML = value;
-    }
-  };
-
-  const escapeHTML = (value = "") =>
-    String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
 
   /* -------------------------------------------------------
-     SAFE URL HANDLING
+     BASIC HELPERS
   ------------------------------------------------------- */
 
+  function setText(selector, value) {
+    const element = $(selector);
+
+    if (!element) return;
+
+    element.textContent =
+      value !== undefined && value !== null
+        ? String(value)
+        : "";
+  }
+
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
   function isSafeURL(url) {
-    if (!url) return false;
+    if (!url || typeof url !== "string") {
+      return false;
+    }
 
     try {
       const parsed = new URL(url, window.location.href);
 
-      return [
-        "http:",
-        "https:"
-      ].includes(parsed.protocol);
+      return (
+        parsed.protocol === "https:" ||
+        parsed.protocol === "http:"
+      );
     } catch {
       return false;
     }
   }
 
-  function applyCheckoutLinks(url) {
-    if (!isSafeURL(url)) return;
 
-    $$("[data-checkout-link]").forEach((link) => {
-      link.href = url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    });
+  function getBooks() {
+    return state.content?.bookshelf?.books || [];
   }
 
+
+  function getAvailableBooks() {
+    return getBooks().filter(
+      book => book.status === "available"
+    );
+  }
+
+
+  function findFeaturedBook() {
+    const books = getBooks();
+
+    return (
+      books.find(book => book.featured === true) ||
+      books.find(book => book.status === "available") ||
+      books[0] ||
+      null
+    );
+  }
+
+
+  function getBookById(id) {
+    return getBooks().find(
+      book => book.id === id
+    );
+  }
+
+
   /* -------------------------------------------------------
-     BRAND / META
+     META / SEO
   ------------------------------------------------------- */
 
   function renderMeta(content) {
     const site = content.site || {};
     const seo = content.seo || {};
 
-    if (seo.title) {
-      document.title = seo.title;
+    if (seo.title || site.name) {
+      document.title =
+        seo.title ||
+        site.name;
     }
 
-    const description = $('meta[name="description"]');
+    const description =
+      seo.description ||
+      "";
 
-    if (description && seo.description) {
-      description.setAttribute("content", seo.description);
+    const descriptionMeta =
+      $('meta[name="description"]');
+
+    if (descriptionMeta) {
+      descriptionMeta.setAttribute(
+        "content",
+        description
+      );
     }
 
-    const ogTitle = $('meta[property="og:title"]');
+    const ogTitle =
+      $('meta[property="og:title"]');
 
-    if (ogTitle && seo.title) {
-      ogTitle.setAttribute("content", seo.title);
+    if (ogTitle) {
+      ogTitle.setAttribute(
+        "content",
+        seo.title || site.name || ""
+      );
     }
 
-    const ogDescription = $('meta[property="og:description"]');
+    const ogDescription =
+      $('meta[property="og:description"]');
 
-    if (ogDescription && seo.description) {
-      ogDescription.setAttribute("content", seo.description);
+    if (ogDescription) {
+      ogDescription.setAttribute(
+        "content",
+        description
+      );
     }
 
-    setText("[data-brand-name]", site.name);
-    setText("[data-brand-short]", site.shortName);
+    const brandMain =
+      $(".brand-main");
+
+    if (brandMain && site.name) {
+      brandMain.textContent =
+        site.name;
+    }
+
+    const brandSub =
+      $(".brand-sub");
+
+    if (brandSub && site.type) {
+      brandSub.textContent =
+        site.type;
+    }
   }
+
 
   /* -------------------------------------------------------
      HERO
@@ -122,851 +179,1332 @@
 
   function renderHero(content) {
     const hero = content.hero || {};
-    const book = content.books?.[0] || {};
+    const book = state.featuredBook;
 
-    setText("#hero-eyebrow", hero.eyebrow);
-    setText("#hero-title", hero.title);
-    setText("#hero-subtitle", hero.subtitle);
-    setText("#hero-description", hero.description);
+    setText(
+      "#hero-eyebrow",
+      hero.eyebrow || "DIGITAL EDITION"
+    );
 
-    setText("#hero-cta", hero.primaryCTA);
-    setText("#hero-secondary-cta", hero.secondaryCTA);
+    setText(
+      "#hero-title",
+      hero.title ||
+        book?.hook ||
+        book?.title ||
+        ""
+    );
 
-    const image = $("#hero-book-image");
+    setText(
+      "#hero-subtitle",
+      hero.subtitle ||
+        book?.title ||
+        ""
+    );
 
-    if (image && book.mockup) {
-      image.src = book.mockup;
-      image.alt =
-        book.mockupAlt ||
+    setText(
+      "#hero-description",
+      hero.description ||
+        book?.shortDescription ||
+        ""
+    );
+
+    const heroCTA =
+      $("[data-primary-cta]");
+
+    if (heroCTA) {
+      heroCTA.textContent =
+        hero.primaryCTA ||
+        book?.cta ||
+        "Get the Book";
+
+      if (book) {
+        configureBookLink(
+          heroCTA,
+          book
+        );
+      }
+    }
+
+    const secondaryCTA =
+      $(".hero-actions .button-secondary");
+
+    if (secondaryCTA) {
+      secondaryCTA.textContent =
+        hero.secondaryCTA ||
+        "View Books";
+
+      secondaryCTA.setAttribute(
+        "href",
+        "#bookshelf"
+      );
+    }
+
+    const heroImage =
+      $("#hero-book-image");
+
+    if (heroImage && book) {
+      heroImage.src =
+        book.cover || "";
+
+      heroImage.alt =
         `${book.title || "Book"} cover`;
     }
 
-    if (hero.primaryCTA) {
-      const primaryCTA = $("[data-primary-cta]");
+    renderHeroMeta(book);
+  }
 
-      if (primaryCTA) {
-        primaryCTA.textContent = hero.primaryCTA;
-      }
+
+  function renderHeroMeta(book) {
+    const container =
+      $("#hero-meta");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!book) {
+      container.hidden = true;
+      return;
+    }
+
+    const items = [];
+
+    if (book.status === "available") {
+      items.push("Available now");
+    }
+
+    if (
+      Array.isArray(book.tags) &&
+      book.tags.length
+    ) {
+      items.push(
+        ...book.tags.slice(0, 3)
+      );
+    }
+
+    if (!items.length) {
+      container.hidden = true;
+      return;
+    }
+
+    container.hidden = false;
+
+    items.forEach(item => {
+      const span =
+        document.createElement("span");
+
+      span.className =
+        "hero-meta-item";
+
+      span.textContent =
+        item;
+
+      container.appendChild(span);
+    });
+  }
+
+
+  /* -------------------------------------------------------
+     FEATURED BOOK
+  ------------------------------------------------------- */
+
+  function renderFeaturedBook(book) {
+    if (!book) return;
+
+    setText(
+      "#featured-title",
+      book.title
+    );
+
+    setText(
+      "#featured-description",
+      book.shortDescription
+    );
+
+    setText(
+      "#featured-badge",
+      book.badge ||
+        "FEATURED"
+    );
+
+    setText(
+      "#featured-hook",
+      book.hook ||
+        book.shortDescription
+    );
+
+    setText(
+      "#featured-price",
+      book.price ||
+        "See current price"
+    );
+
+    const image =
+      $("#featured-book-image");
+
+    if (image) {
+      image.src =
+        book.cover || "";
+
+      image.alt =
+        `${book.title || "Book"} cover`;
+    }
+
+    renderHighlights(
+      "#featured-highlights",
+      book.highlights
+    );
+
+    const checkout =
+      $("[data-featured-checkout]");
+
+    if (checkout) {
+      configureBookLink(
+        checkout,
+        book
+      );
     }
   }
 
-  /* -------------------------------------------------------
-     TRUST STRIP
-  ------------------------------------------------------- */
-
-  function renderTrust(content) {
-    const items = content.trustStrip || [];
-    const container = $("#trust-items");
-
-    if (!container) return;
-
-    container.innerHTML = items
-      .map(
-        (item) => `
-          <div class="trust-item">
-            <span class="trust-item-icon" aria-hidden="true">
-              ${escapeHTML(item.icon || "✓")}
-            </span>
-            <span>${escapeHTML(item.text || item)}</span>
-          </div>
-        `
-      )
-      .join("");
-  }
 
   /* -------------------------------------------------------
-     TWO-BOOK SHELF
+     BOOKSHELF
   ------------------------------------------------------- */
 
   function renderBookshelf(content) {
-    const books = content.books || [];
-    const grid = $("#bookshelf-grid");
-
-    if (!grid) return;
-
-    grid.innerHTML = books
-      .map((book, index) => {
-        const featured = book.featured || index === 0;
-
-        return `
-          <article class="book-card ${
-            featured ? "featured" : ""
-          }">
-
-            ${
-              book.badge
-                ? `<span class="book-badge">${escapeHTML(
-                    book.badge
-                  )}</span>`
-                : ""
-            }
-
-            <div class="book-card-cover">
-              ${
-                book.mockup
-                  ? `
-                    <img
-                      src="${escapeHTML(book.mockup)}"
-                      alt="${escapeHTML(
-                        book.mockupAlt ||
-                          book.title ||
-                          "Book cover"
-                      )}"
-                      loading="lazy"
-                    >
-                  `
-                  : `
-                    <div class="book-placeholder">
-                      ${escapeHTML(book.title || "Coming soon")}
-                    </div>
-                  `
-              }
-            </div>
-
-            <div class="book-card-body">
-
-              ${
-                book.eyebrow
-                  ? `<p class="book-card-eyebrow">
-                      ${escapeHTML(book.eyebrow)}
-                    </p>`
-                  : ""
-              }
-
-              <h3>
-                ${escapeHTML(book.title || "")}
-              </h3>
-
-              ${
-                book.subtitle
-                  ? `<p class="book-card-subtitle">
-                      ${escapeHTML(book.subtitle)}
-                    </p>`
-                  : ""
-              }
-
-              ${
-                book.description
-                  ? `<p class="book-card-description">
-                      ${escapeHTML(book.description)}
-                    </p>`
-                  : ""
-              }
-
-              ${
-                book.price
-                  ? `<div class="book-card-price">
-                      ${escapeHTML(book.price)}
-                    </div>`
-                  : ""
-              }
-
-              <a
-                class="button button-primary book-card-button"
-                href="${escapeHTML(book.checkout || "#")}"
-                ${
-                  isSafeURL(book.checkout)
-                    ? 'target="_blank" rel="noopener noreferrer"'
-                    : ""
-                }
-              >
-                ${escapeHTML(
-                  book.buttonText ||
-                    (book.available
-                      ? "Get the Book"
-                      : "Coming Soon")
-                )}
-              </a>
-
-            </div>
-          </article>
-        `;
-      })
-      .join("");
-  }
-
-  /* -------------------------------------------------------
-     PROBLEM SECTION
-  ------------------------------------------------------- */
-
-  function renderProblem(content) {
-    const problem = content.problem || {};
-
-    setText("#problem-eyebrow", problem.eyebrow);
-    setText("#problem-title", problem.title);
-    setText("#problem-description", problem.description);
-
-    const container = $("#problem-cards");
+    const container =
+      $("#bookshelf-grid");
 
     if (!container) return;
 
-    container.innerHTML = (problem.points || [])
-      .map(
-        (item) => `
-          <article class="question-card">
-            <div class="question-card-icon">
-              ${escapeHTML(item.icon || "?")}
-            </div>
+    const books =
+      content.bookshelf?.books || [];
 
-            <h3>${escapeHTML(item.title || "")}</h3>
+    container.innerHTML = "";
 
-            <p>${escapeHTML(item.text || "")}</p>
-          </article>
-        `
-      )
-      .join("");
+    if (!books.length) {
+      return;
+    }
+
+    books.forEach(book => {
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "book-card";
+
+      if (book.featured) {
+        card.classList.add(
+          "book-card-featured"
+        );
+      }
+
+      const statusLabel =
+        book.status === "available"
+          ? (
+              book.badge ||
+              "AVAILABLE"
+            )
+          : (
+              book.badge ||
+              "COMING SOON"
+            );
+
+      const buttonLabel =
+        book.status === "available"
+          ? (
+              book.cta ||
+              "Get the Book"
+            )
+          : "View Details";
+
+      card.innerHTML = `
+        <button
+          type="button"
+          class="book-card-select"
+          data-book-id="${escapeHTML(book.id)}"
+          aria-label="View ${escapeHTML(book.title)}"
+        >
+          <span class="book-card-cover-wrap">
+            <img
+              class="book-card-cover"
+              src="${escapeHTML(book.cover || "")}"
+              alt="${escapeHTML(book.title || "Book cover")}"
+              loading="lazy"
+            />
+          </span>
+
+          <span class="book-card-content">
+
+            <span class="book-card-topline">
+              <span class="book-card-number">
+                ${escapeHTML(book.number || "")}
+              </span>
+
+              <span class="book-card-badge">
+                ${escapeHTML(statusLabel)}
+              </span>
+            </span>
+
+            <span class="book-card-title">
+              ${escapeHTML(book.title || "")}
+            </span>
+
+            <span class="book-card-description">
+              ${escapeHTML(book.shortDescription || "")}
+            </span>
+
+            <span class="book-card-bottom">
+              <span class="book-card-price">
+                ${escapeHTML(book.price || "")}
+              </span>
+
+              <span class="book-card-action">
+                ${escapeHTML(buttonLabel)}
+              </span>
+            </span>
+
+          </span>
+        </button>
+      `;
+
+      container.appendChild(card);
+    });
+
+    bindBookSelection();
+
+    setupImageFallbacks();
   }
 
+
+  function bindBookSelection() {
+    $$("[data-book-id]").forEach(button => {
+      button.addEventListener(
+        "click",
+        () => {
+          const bookId =
+            button.dataset.bookId;
+
+          const book =
+            getBookById(bookId);
+
+          if (!book) return;
+
+          selectBook(book);
+
+          const details =
+            $("#book-details");
+
+          if (details) {
+            details.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }
+      );
+    });
+  }
+
+
   /* -------------------------------------------------------
-     PROMISE
+     BOOK DETAILS
   ------------------------------------------------------- */
 
-  function renderPromise(content) {
-    const promise = content.promise || {};
+  function selectBook(book) {
+    if (!book) return;
 
-    setText("#promise-eyebrow", promise.eyebrow);
-    setText("#promise-title", promise.title);
-    setText("#promise-description", promise.description);
+    state.selectedBook =
+      book;
 
-    const list = $("#promise-list");
+    renderBookDetails(
+      book
+    );
+
+    renderPreview(
+      book
+    );
+
+    updatePurchaseArea(
+      book
+    );
+
+    updateStickyPurchase(
+      book
+    );
+  }
+
+
+  function renderBookDetails(book) {
+    const section =
+      $("#book-details");
+
+    if (section) {
+      section.hidden = false;
+    }
+
+    setText(
+      "#details-eyebrow",
+      book.badge ||
+        "BOOK"
+    );
+
+    setText(
+      "#details-title",
+      book.title
+    );
+
+    setText(
+      "#details-hook",
+      book.hook ||
+        ""
+    );
+
+    setText(
+      "#details-description",
+      book.shortDescription ||
+        ""
+    );
+
+    setText(
+      "#details-price",
+      book.price ||
+        ""
+    );
+
+    renderHighlights(
+      "#details-highlights",
+      book.highlights
+    );
+
+    const image =
+      $("#details-book-image");
+
+    if (image) {
+      image.src =
+        book.cover || "";
+
+      image.alt =
+        `${book.title || "Book"} cover`;
+    }
+
+    const checkout =
+      $("[data-details-checkout]");
+
+    if (checkout) {
+      configureBookLink(
+        checkout,
+        book
+      );
+    }
+  }
+
+
+  /* -------------------------------------------------------
+     HIGHLIGHTS
+  ------------------------------------------------------- */
+
+  function renderHighlights(
+    selector,
+    highlights
+  ) {
+    const list =
+      $(selector);
 
     if (!list) return;
 
-    list.innerHTML = (promise.points || [])
-      .map(
-        (point) => `
-          <li>
-            <span class="check-icon" aria-hidden="true">✓</span>
-            <span>${escapeHTML(point)}</span>
-          </li>
-        `
-      )
-      .join("");
+    list.innerHTML = "";
+
+    if (
+      !Array.isArray(highlights) ||
+      !highlights.length
+    ) {
+      list.hidden = true;
+      return;
+    }
+
+    list.hidden = false;
+
+    highlights.forEach(item => {
+      const li =
+        document.createElement("li");
+
+      li.textContent =
+        item;
+
+      list.appendChild(li);
+    });
   }
+
 
   /* -------------------------------------------------------
-     DECISION FLOW
+     PREVIEW
   ------------------------------------------------------- */
 
-  function renderDecisionFlow(content) {
-    const flow = content.decisionFlow || {};
+  function renderPreview(book) {
+    const section =
+      $("#preview");
 
-    setText("#decision-eyebrow", flow.eyebrow);
-    setText("#decision-title", flow.title);
-    setText("#decision-description", flow.description);
+    const track =
+      $("#preview-track");
 
-    const container = $("#decision-flow");
+    const dots =
+      $("#preview-dots");
 
-    if (!container) return;
+    if (
+      !section ||
+      !track ||
+      !dots
+    ) {
+      return;
+    }
 
-    container.innerHTML = (flow.steps || [])
-      .map(
-        (step, index) => `
-          <article class="decision-step">
+    track.innerHTML = "";
+    dots.innerHTML = "";
 
-            <div class="decision-step-number">
-              ${escapeHTML(step.number || index + 1)}
-            </div>
+    const previews =
+      Array.isArray(book?.preview)
+        ? book.preview
+        : [];
 
-            <h3>${escapeHTML(step.title || "")}</h3>
+    if (!previews.length) {
+      section.hidden = true;
+      return;
+    }
 
-            <p>${escapeHTML(step.text || "")}</p>
+    section.hidden = false;
 
-          </article>
-        `
-      )
-      .join("");
-  }
+    state.previewIndex = 0;
 
-  /* -------------------------------------------------------
-     DECISION OS
-  ------------------------------------------------------- */
+    previews.forEach(
+      (imagePath, index) => {
+        const slide =
+          document.createElement("div");
 
-  function renderDecisionOS(content) {
-    const os = content.decisionOS || {};
+        slide.className =
+          "preview-slide";
 
-    setText("#os-eyebrow", os.eyebrow);
-    setText("#os-title", os.title);
-    setText("#os-description", os.description);
+        slide.dataset.index =
+          String(index);
 
-    const container = $("#decision-os-grid");
+        slide.innerHTML = `
+          <img
+            src="${escapeHTML(imagePath)}"
+            alt="${escapeHTML(book.title || "Book")} preview ${index + 1}"
+            loading="${index === 0 ? "eager" : "lazy"}"
+          />
+        `;
 
-    if (!container) return;
+        track.appendChild(slide);
 
-    container.innerHTML = (os.items || [])
-      .map(
-        (item) => `
-          <article class="os-card">
+        const dot =
+          document.createElement("button");
 
-            <div class="os-card-number">
-              ${escapeHTML(item.number || "")}
-            </div>
+        dot.type = "button";
 
-            <h3>${escapeHTML(item.title || "")}</h3>
+        dot.className =
+          "preview-dot";
 
-            <p>${escapeHTML(item.text || "")}</p>
+        dot.dataset.previewIndex =
+          String(index);
 
-          </article>
-        `
-      )
-      .join("");
-  }
-
-  /* -------------------------------------------------------
-     LEARNING SECTION
-  ------------------------------------------------------- */
-
-  function renderLearning(content) {
-    const learning = content.learning || {};
-
-    setText("#learning-eyebrow", learning.eyebrow);
-    setText("#learning-title", learning.title);
-    setText("#learning-description", learning.description);
-
-    const container = $("#learning-grid");
-
-    if (!container) return;
-
-    container.innerHTML = (learning.items || [])
-      .map(
-        (item) => `
-          <article class="learning-card">
-
-            ${
-              item.icon
-                ? `<div class="learning-card-icon">
-                    ${escapeHTML(item.icon)}
-                  </div>`
-                : ""
-            }
-
-            <h3>${escapeHTML(item.title || "")}</h3>
-
-            <p>${escapeHTML(item.text || "")}</p>
-
-          </article>
-        `
-      )
-      .join("");
-  }
-
-  /* -------------------------------------------------------
-     TOOLKIT
-  ------------------------------------------------------- */
-
-  function renderToolkit(content) {
-    const toolkit = content.toolkit || {};
-
-    setText("#toolkit-eyebrow", toolkit.eyebrow);
-    setText("#toolkit-title", toolkit.title);
-    setText("#toolkit-description", toolkit.description);
-
-    const container = $("#toolkit-list");
-
-    if (!container) return;
-
-    container.innerHTML = (toolkit.items || [])
-      .map(
-        (item) => `
-          <li class="toolkit-item">
-
-            <span class="toolkit-check" aria-hidden="true">
-              ✓
-            </span>
-
-            <div>
-              <strong>${escapeHTML(
-                item.title || ""
-              )}</strong>
-
-              ${
-                item.text
-                  ? `<p>${escapeHTML(item.text)}</p>`
-                  : ""
-              }
-            </div>
-
-          </li>
-        `
-      )
-      .join("");
-  }
-
-  /* -------------------------------------------------------
-     PREVIEW CAROUSEL
-  ------------------------------------------------------- */
-
-  function renderPreview(content) {
-    const preview = content.preview || {};
-
-    setText("#preview-eyebrow", preview.eyebrow);
-    setText("#preview-title", preview.title);
-    setText("#preview-description", preview.description);
-
-    const slides = preview.items || [];
-    const container = $("#preview-track");
-
-    if (!container) return;
-
-    container.innerHTML = slides
-      .map(
-        (item, index) => `
-          <article
-            class="preview-slide ${
-              index === 0 ? "active" : ""
-            }"
-            data-preview-slide="${index}"
-          >
-
-            ${
-              item.image
-                ? `
-                  <img
-                    src="${escapeHTML(item.image)}"
-                    alt="${escapeHTML(
-                      item.alt || "Book preview"
-                    )}"
-                    loading="lazy"
-                  >
-                `
-                : ""
-            }
-
-            <div class="preview-slide-content">
-
-              ${
-                item.label
-                  ? `<span class="preview-label">
-                      ${escapeHTML(item.label)}
-                    </span>`
-                  : ""
-              }
-
-              <h3>${escapeHTML(item.title || "")}</h3>
-
-              <p>${escapeHTML(item.text || "")}</p>
-
-            </div>
-
-          </article>
-        `
-      )
-      .join("");
-
-    renderPreviewControls(slides.length);
-    showPreview(0);
-  }
-
-  function renderPreviewControls(count) {
-    const dots = $("#preview-dots");
-
-    if (!dots) return;
-
-    dots.innerHTML = Array.from(
-      { length: count },
-      (_, index) => `
-        <button
-          type="button"
-          class="preview-dot ${
-            index === 0 ? "active" : ""
-          }"
-          aria-label="Show preview ${index + 1}"
-          data-preview-index="${index}"
-        ></button>
-      `
-    ).join("");
-
-    $$("[data-preview-index]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const index = Number(
-          button.dataset.previewIndex
+        dot.setAttribute(
+          "aria-label",
+          `Show preview ${index + 1}`
         );
 
-        showPreview(index);
-      });
-    });
+        dot.addEventListener(
+          "click",
+          () => {
+            state.previewIndex =
+              index;
+
+            updatePreviewPosition();
+          }
+        );
+
+        dots.appendChild(dot);
+      }
+    );
+
+    updatePreviewPosition();
+
+    setupImageFallbacks();
   }
 
-  function showPreview(index) {
-    const slides = $$("[data-preview-slide]");
 
-    if (!slides.length) return;
+  function updatePreviewPosition() {
+    const track =
+      $("#preview-track");
 
-    state.currentPreview =
-      (index + slides.length) % slides.length;
+    const slides =
+      $$(".preview-slide", track);
 
-    slides.forEach((slide, slideIndex) => {
-      slide.classList.toggle(
-        "active",
-        slideIndex === state.currentPreview
-      );
-    });
+    const dots =
+      $$(".preview-dot");
 
-    $$("[data-preview-index]").forEach(
-      (button, buttonIndex) => {
-        button.classList.toggle(
+    if (!track || !slides.length) {
+      return;
+    }
+
+    const offset =
+      state.previewIndex * 100;
+
+    track.style.transform =
+      `translateX(-${offset}%)`;
+
+    slides.forEach(
+      (slide, index) => {
+        slide.setAttribute(
+          "aria-hidden",
+          index !== state.previewIndex
+        );
+      }
+    );
+
+    dots.forEach(
+      (dot, index) => {
+        const active =
+          index === state.previewIndex;
+
+        dot.classList.toggle(
           "active",
-          buttonIndex === state.currentPreview
+          active
+        );
+
+        dot.setAttribute(
+          "aria-current",
+          active
+            ? "true"
+            : "false"
         );
       }
     );
   }
 
-  /* -------------------------------------------------------
-     AUDIENCE
-  ------------------------------------------------------- */
-
-  function renderAudience(content) {
-    const audience = content.audience || {};
-
-    setText("#audience-eyebrow", audience.eyebrow);
-    setText("#audience-title", audience.title);
-    setText("#audience-description", audience.description);
-
-    const container = $("#audience-list");
-
-    if (!container) return;
-
-    container.innerHTML = (audience.items || [])
-      .map(
-        (item) => `
-          <div class="audience-item">
-
-            <div class="audience-icon">
-              ${escapeHTML(item.icon || "✓")}
-            </div>
-
-            <div>
-              <h3>${escapeHTML(item.title || "")}</h3>
-              <p>${escapeHTML(item.text || "")}</p>
-            </div>
-
-          </div>
-        `
-      )
-      .join("");
-  }
 
   /* -------------------------------------------------------
-     PHILOSOPHY
+     PURCHASE AREA
   ------------------------------------------------------- */
 
-  function renderPhilosophy(content) {
-    const philosophy = content.philosophy || {};
-
-    setText("#philosophy-eyebrow", philosophy.eyebrow);
-    setText("#philosophy-title", philosophy.title);
+  function updatePurchaseArea(book) {
     setText(
-      "#philosophy-description",
-      philosophy.description
+      "#purchase-title",
+      book?.title ||
+        state.content?.site?.name ||
+        ""
     );
 
-    const container = $("#philosophy-list");
+    setText(
+      "#purchase-description",
+      book?.hook ||
+        book?.shortDescription ||
+        ""
+    );
 
-    if (!container) return;
+    const purchaseButton =
+      $("[data-purchase-button]");
 
-    container.innerHTML = (philosophy.points || [])
-      .map(
-        (point) => `
-          <li>
-            <span aria-hidden="true">→</span>
-            <span>${escapeHTML(point)}</span>
-          </li>
-        `
-      )
-      .join("");
+    if (purchaseButton) {
+      configureBookLink(
+        purchaseButton,
+        book
+      );
+    }
   }
+
+
+  function configureBookLink(
+    element,
+    book
+  ) {
+    if (!element) return;
+
+    const available =
+      book?.status === "available";
+
+    const checkout =
+      book?.checkout;
+
+    const validCheckout =
+      isSafeURL(checkout);
+
+    const canPurchase =
+      available &&
+      validCheckout;
+
+    if (canPurchase) {
+      element.href =
+        checkout;
+
+      element.removeAttribute(
+        "aria-disabled"
+      );
+
+      element.classList.remove(
+        "is-disabled"
+      );
+
+      element.removeAttribute(
+        "tabindex"
+      );
+
+      if (
+        element.tagName === "BUTTON"
+      ) {
+        element.disabled = false;
+      }
+
+      element.dataset.checkoutReady =
+        "true";
+
+    } else {
+      element.href =
+        "#";
+
+      element.setAttribute(
+        "aria-disabled",
+        "true"
+      );
+
+      element.classList.add(
+        "is-disabled"
+      );
+
+      element.setAttribute(
+        "tabindex",
+        "-1"
+      );
+
+      if (
+        element.tagName === "BUTTON"
+      ) {
+        element.disabled = true;
+      }
+
+      element.dataset.checkoutReady =
+        "false";
+    }
+
+    if (
+      book?.status === "coming-soon"
+    ) {
+      element.textContent =
+        "Coming Soon";
+    } else {
+      element.textContent =
+        book?.cta ||
+        "Get the Book";
+    }
+  }
+
 
   /* -------------------------------------------------------
-     WHY THIS BOOK
+     CHECKOUT LINKS
   ------------------------------------------------------- */
 
-  function renderWhy(content) {
-    const why = content.whyThisBook || {};
+  function applyCheckoutLinks() {
+    const available =
+      state.selectedBook ||
+      state.featuredBook;
 
-    setText("#why-eyebrow", why.eyebrow);
-    setText("#why-title", why.title);
-    setText("#why-description", why.description);
+    if (!available) return;
 
-    const container = $("#why-grid");
-
-    if (!container) return;
-
-    container.innerHTML = (why.points || [])
-      .map(
-        (item) => `
-          <article class="why-card">
-
-            <h3>${escapeHTML(item.title || "")}</h3>
-
-            <p>${escapeHTML(item.text || "")}</p>
-
-          </article>
-        `
-      )
-      .join("");
+    $$("[data-checkout-link]")
+      .forEach(link => {
+        configureBookLink(
+          link,
+          available
+        );
+      });
   }
+
+
+  /* -------------------------------------------------------
+     CHECKOUT TRACKING
+  ------------------------------------------------------- */
+
+  function setupCheckoutTracking() {
+    $$(
+      "[data-featured-checkout], " +
+      "[data-details-checkout], " +
+      "[data-checkout-link], " +
+      "[data-purchase-button], " +
+      "[data-primary-cta]"
+    ).forEach(link => {
+
+      if (
+        link.dataset.trackingBound ===
+        "true"
+      ) {
+        return;
+      }
+
+      link.dataset.trackingBound =
+        "true";
+
+      link.addEventListener(
+        "click",
+        event => {
+
+          if (
+            link.dataset.checkoutReady !==
+            "true"
+          ) {
+            event.preventDefault();
+            return;
+          }
+
+          const book =
+            state.selectedBook ||
+            state.featuredBook;
+
+          if (
+            typeof window.gtag ===
+            "function"
+          ) {
+            window.gtag(
+              "event",
+              "begin_checkout",
+              {
+                book_id:
+                  book?.id || "",
+                book_title:
+                  book?.title || ""
+              }
+            );
+          }
+        }
+      );
+    });
+  }
+
 
   /* -------------------------------------------------------
      ABOUT
   ------------------------------------------------------- */
 
   function renderAbout(content) {
-    const about = content.about || {};
+    const about =
+      content.about || {};
 
-    setText("#about-eyebrow", about.eyebrow);
-    setText("#about-title", about.title);
-    setText("#about-description", about.description);
+    setText(
+      "#about-eyebrow",
+      about.eyebrow ||
+        "ABOUT"
+    );
 
-    const image = $("#about-image");
+    setText(
+      "#about-title",
+      about.title ||
+        ""
+    );
 
-    if (image && about.image) {
-      image.src = about.image;
-      image.alt = about.imageAlt || "";
-    }
+    setText(
+      "#about-description",
+      about.text ||
+        about.description ||
+        ""
+    );
   }
+
 
   /* -------------------------------------------------------
      FAQ
   ------------------------------------------------------- */
 
   function renderFAQ(content) {
-    const faq = content.faq || {};
+    const faq =
+      content.faq || {};
 
-    setText("#faq-eyebrow", faq.eyebrow);
-    setText("#faq-title", faq.title);
-    setText("#faq-description", faq.description);
+    const list =
+      $("#faq-list");
 
-    const container = $("#faq-list");
+    if (!list) return;
 
-    if (!container) return;
+    list.innerHTML = "";
 
-    container.innerHTML = (faq.items || [])
-      .map(
-        (item, index) => `
-          <article class="faq-item">
+    const items =
+      Array.isArray(faq.items)
+        ? faq.items
+        : [];
 
-            <button
-              type="button"
-              class="faq-question"
-              aria-expanded="false"
-              aria-controls="faq-answer-${index}"
-            >
-              <span>
-                ${escapeHTML(item.question || "")}
-              </span>
+    if (!items.length) {
+      const section =
+        $("#faq");
 
-              <span
-                class="faq-plus"
-                aria-hidden="true"
-              >
-                +
-              </span>
-            </button>
-
-            <div
-              id="faq-answer-${index}"
-              class="faq-answer"
-              hidden
-            >
-              <p>${escapeHTML(item.answer || "")}</p>
-            </div>
-
-          </article>
-        `
-      )
-      .join("");
-
-    $$(".faq-question").forEach((button) => {
-      button.addEventListener("click", () => {
-        toggleFAQ(button);
-      });
-    });
-  }
-
-  function toggleFAQ(button) {
-    const expanded =
-      button.getAttribute("aria-expanded") === "true";
-
-    const answerId =
-      button.getAttribute("aria-controls");
-
-    const answer = document.getElementById(answerId);
-
-    if (!answer) return;
-
-    button.setAttribute(
-      "aria-expanded",
-      String(!expanded)
-    );
-
-    answer.hidden = expanded;
-
-    const plus = $(".faq-plus", button);
-
-    if (plus) {
-      plus.textContent = expanded ? "+" : "−";
-    }
-
-    const item = button.closest(".faq-item");
-
-    if (item) {
-      item.classList.toggle("open", !expanded);
-    }
-  }
-
-  /* -------------------------------------------------------
-     PURCHASE CTA
-  ------------------------------------------------------- */
-
-  function renderPurchase(content) {
-    const purchase = content.purchase || {};
-
-    setText("#purchase-eyebrow", purchase.eyebrow);
-    setText("#purchase-title", purchase.title);
-    setText(
-      "#purchase-description",
-      purchase.description
-    );
-
-    $$("[data-purchase-button]").forEach((button) => {
-      if (purchase.buttonText) {
-        button.textContent = purchase.buttonText;
+      if (section) {
+        section.hidden = true;
       }
-    });
-  }
 
-  /* -------------------------------------------------------
-     DISCLAIMER
-  ------------------------------------------------------- */
+      return;
+    }
 
-  function renderDisclaimer(content) {
-    const disclaimer = content.disclaimer || {};
+    const section =
+      $("#faq");
 
-    setText(
-      "#disclaimer-text",
-      disclaimer.text
+    if (section) {
+      section.hidden = false;
+    }
+
+    items.forEach(
+      (item, index) => {
+
+        const wrapper =
+          document.createElement("details");
+
+        wrapper.className =
+          "faq-item";
+
+        if (index === 0) {
+          wrapper.open = true;
+        }
+
+        const summary =
+          document.createElement("summary");
+
+        summary.textContent =
+          item.question || "";
+
+        const answer =
+          document.createElement("div");
+
+        answer.className =
+          "faq-answer";
+
+        const paragraph =
+          document.createElement("p");
+
+        paragraph.textContent =
+          item.answer || "";
+
+        answer.appendChild(
+          paragraph
+        );
+
+        wrapper.appendChild(
+          summary
+        );
+
+        wrapper.appendChild(
+          answer
+        );
+
+        list.appendChild(
+          wrapper
+        );
+      }
     );
   }
+
 
   /* -------------------------------------------------------
      FOOTER
   ------------------------------------------------------- */
 
   function renderFooter(content) {
-    const footer = content.footer || {};
+    const footer =
+      content.footer || {};
 
-    setText("#footer-text", footer.text);
-    setText("#footer-copyright", footer.copyright);
+    const site =
+      content.site || {};
 
-    const linksContainer = $("#footer-links");
+    const footerBrand =
+      $(".footer-brand strong");
 
-    if (!linksContainer) return;
+    if (
+      footerBrand &&
+      site.name
+    ) {
+      footerBrand.textContent =
+        site.name;
+    }
 
-    linksContainer.innerHTML = (footer.links || [])
-      .map(
-        (link) => `
-          <a
-            href="${escapeHTML(link.url || "#")}"
-            ${
-              isSafeURL(link.url)
-                ? 'target="_blank" rel="noopener noreferrer"'
-                : ""
-            }
-          >
-            ${escapeHTML(link.label || "")}
-          </a>
-        `
-      )
-      .join("");
+    setText(
+      "#footer-text",
+      footer.text ||
+        content.hero?.subtitle ||
+        ""
+    );
+
+    setText(
+      "#footer-copyright",
+      footer.copyright ||
+        `© ${new Date().getFullYear()} ${
+          site.name || ""
+        }. All rights reserved.`
+    );
+
+    const privacyLink =
+      $("#openPrivacy");
+
+    if (
+      privacyLink &&
+      footer.privacy
+    ) {
+      privacyLink.textContent =
+        footer.privacy;
+    }
   }
+
 
   /* -------------------------------------------------------
-     MOBILE NAVIGATION
+     TRUST STRIP
   ------------------------------------------------------- */
 
-  function setupMobileNavigation() {
-    const toggle =
-      $("[data-menu-toggle]");
+  function renderTrust(content) {
+    const section =
+      $(".trust-strip");
 
-    const menu =
-      $("[data-mobile-menu]");
+    const container =
+      $("#trust-items");
 
-    if (!toggle || !menu) return;
-
-    toggle.addEventListener("click", () => {
-      state.mobileMenuOpen =
-        !state.mobileMenuOpen;
-
-      toggle.setAttribute(
-        "aria-expanded",
-        String(state.mobileMenuOpen)
-      );
-
-      menu.classList.toggle(
-        "open",
-        state.mobileMenuOpen
-      );
-
-      document.body.classList.toggle(
-        "menu-open",
-        state.mobileMenuOpen
-      );
-    });
-
-    $$(
-      "[data-mobile-menu] a"
-    ).forEach((link) => {
-      link.addEventListener("click", () => {
-        closeMobileMenu();
-      });
-    });
-  }
-
-  function closeMobileMenu() {
-    state.mobileMenuOpen = false;
-
-    const toggle =
-      $("[data-menu-toggle]");
-
-    const menu =
-      $("[data-mobile-menu]");
-
-    if (toggle) {
-      toggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+    if (
+      !section ||
+      !container
+    ) {
+      return;
     }
 
-    if (menu) {
-      menu.classList.remove("open");
+    const trust =
+      content.trustStrip;
+
+    if (
+      !trust ||
+      !Array.isArray(trust.items) ||
+      !trust.items.length
+    ) {
+      section.hidden = true;
+      return;
     }
 
-    document.body.classList.remove(
-      "menu-open"
+    section.hidden = false;
+
+    container.innerHTML = "";
+
+    trust.items.forEach(
+      item => {
+        const element =
+          document.createElement("div");
+
+        element.className =
+          "trust-item";
+
+        if (
+          typeof item === "string"
+        ) {
+          element.textContent =
+            item;
+        } else {
+          element.innerHTML = `
+            <strong>
+              ${escapeHTML(item.title || "")}
+            </strong>
+
+            <span>
+              ${escapeHTML(item.text || "")}
+            </span>
+          `;
+        }
+
+        container.appendChild(
+          element
+        );
+      }
     );
   }
+
+
+  /* -------------------------------------------------------
+     DISCLAIMER
+  ------------------------------------------------------- */
+
+  function renderDisclaimer(content) {
+    const disclaimer =
+      content.disclaimer;
+
+    const element =
+      $("#disclaimer-text");
+
+    if (!element) return;
+
+    if (typeof disclaimer === "string") {
+      element.textContent =
+        disclaimer;
+      return;
+    }
+
+    if (
+      disclaimer &&
+      typeof disclaimer.text === "string"
+    ) {
+      element.textContent =
+        disclaimer.text;
+    }
+  }
+
+
+  /* -------------------------------------------------------
+     STICKY MOBILE PURCHASE
+  ------------------------------------------------------- */
+
+  function updateStickyPurchase(book) {
+    const bar =
+      $(".mobile-sticky-purchase");
+
+    if (!bar) return;
+
+    const info =
+      $(".mobile-sticky-info", bar);
+
+    const title =
+      $("strong", info);
+
+    const subtitle =
+      $("span", info);
+
+    if (title) {
+      title.textContent =
+        book?.title ||
+        "";
+    }
+
+    if (subtitle) {
+      subtitle.textContent =
+        book?.price ||
+        "Digital Edition";
+    }
+
+    const link =
+      $(
+        "[data-checkout-link]",
+        bar
+      );
+
+    if (link) {
+      configureBookLink(
+        link,
+        book
+      );
+    }
+
+    if (
+      book?.status === "available" &&
+      isSafeURL(book?.checkout)
+    ) {
+      bar.dataset.purchaseAvailable =
+        "true";
+    } else {
+      bar.dataset.purchaseAvailable =
+        "false";
+
+      bar.classList.remove(
+        "visible"
+      );
+    }
+  }
+
+
+  function setupStickyPurchaseBar() {
+    const bar =
+      $(".mobile-sticky-purchase");
+
+    const hero =
+      $(".hero");
+
+    if (
+      !bar ||
+      !hero
+    ) {
+      return;
+    }
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+
+            const book =
+              state.selectedBook ||
+              state.featuredBook;
+
+            const canShow =
+              book?.status ===
+                "available" &&
+              isSafeURL(
+                book?.checkout
+              );
+
+            if (
+              !entry.isIntersecting &&
+              canShow
+            ) {
+              bar.classList.add(
+                "visible"
+              );
+            } else {
+              bar.classList.remove(
+                "visible"
+              );
+            }
+
+          });
+        },
+        {
+          threshold: 0
+        }
+      );
+
+    observer.observe(hero);
+  }
+
+
+  /* -------------------------------------------------------
+     PRIVACY MODAL
+  ------------------------------------------------------- */
+
+  function setupPrivacyModal() {
+    const modal =
+      $("#privacyModal");
+
+    const openButton =
+      $("#openPrivacy");
+
+    const closeButton =
+      $("#closePrivacy");
+
+    const backdrop =
+      $(".privacy-modal-backdrop");
+
+    if (
+      !modal ||
+      !openButton ||
+      !closeButton
+    ) {
+      return;
+    }
+
+    let previousFocus = null;
+
+    function openModal(event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      previousFocus =
+        document.activeElement;
+
+      modal.classList.add(
+        "is-open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+      closeButton.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove(
+        "is-open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
+      if (
+        previousFocus &&
+        typeof previousFocus.focus ===
+          "function"
+      ) {
+        previousFocus.focus();
+      }
+    }
+
+    openButton.addEventListener(
+      "click",
+      openModal
+    );
+
+    closeButton.addEventListener(
+      "click",
+      closeModal
+    );
+
+    if (backdrop) {
+      backdrop.addEventListener(
+        "click",
+        closeModal
+      );
+    }
+
+    document.addEventListener(
+      "keydown",
+      event => {
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains(
+            "is-open"
+          )
+        ) {
+          closeModal();
+        }
+      }
+    );
+  }
+
 
   /* -------------------------------------------------------
      SMOOTH SCROLL
   ------------------------------------------------------- */
 
   function setupSmoothScroll() {
-    $$('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const targetId =
-          link.getAttribute("href");
+    document.addEventListener(
+      "click",
+      event => {
+
+        const link =
+          event.target.closest(
+            'a[href^="#"]'
+          );
+
+        if (!link) return;
+
+        const href =
+          link.getAttribute(
+            "href"
+          );
 
         if (
-          !targetId ||
-          targetId === "#"
+          !href ||
+          href === "#"
+        ) {
+          return;
+        }
+
+        if (
+          link.dataset.checkoutReady ===
+          "true"
         ) {
           return;
         }
 
         const target =
-          document.querySelector(targetId);
+          document.querySelector(
+            href
+          );
 
         if (!target) return;
 
@@ -976,247 +1514,57 @@
           behavior: "smooth",
           block: "start"
         });
-      });
-    });
-  }
 
-  /* -------------------------------------------------------
-     HEADER SCROLL EFFECT
-  ------------------------------------------------------- */
-
-  function setupHeaderScroll() {
-    const header = $(".site-header");
-
-    if (!header) return;
-
-    const updateHeader = () => {
-      header.classList.toggle(
-        "scrolled",
-        window.scrollY > 20
-      );
-    };
-
-    updateHeader();
-
-    window.addEventListener(
-      "scroll",
-      updateHeader,
-      { passive: true }
+        history.replaceState(
+          null,
+          "",
+          href
+        );
+      }
     );
   }
 
-  /* -------------------------------------------------------
-     MOBILE STICKY PURCHASE BAR
-  ------------------------------------------------------- */
-
-  function setupStickyPurchaseBar() {
-    const bar =
-      $(".mobile-sticky-purchase");
-
-    if (!bar) return;
-
-    const hero =
-      $(".hero");
-
-    if (!hero) return;
-
-    const observer =
-      new IntersectionObserver(
-        ([entry]) => {
-          bar.classList.toggle(
-            "visible",
-            !entry.isIntersecting
-          );
-        },
-        {
-          threshold: 0.15
-        }
-      );
-
-    observer.observe(hero);
-  }
 
   /* -------------------------------------------------------
      IMAGE FALLBACKS
   ------------------------------------------------------- */
 
   function setupImageFallbacks() {
-    document.addEventListener(
-      "error",
-      (event) => {
-        const image = event.target;
+    $$("img").forEach(
+      image => {
 
         if (
-          image &&
-          image.tagName === "IMG"
+          image.dataset.fallbackBound ===
+          "true"
         ) {
-          image.classList.add(
-            "image-error"
-          );
+          return;
         }
-      },
-      true
-    );
-  }
 
-  /* -------------------------------------------------------
-     EXTERNAL CHECKOUT TRACKING
-  ------------------------------------------------------- */
+        image.dataset.fallbackBound =
+          "true";
 
-  function setupCheckoutTracking() {
-    $$("[data-checkout-link]").forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
+        image.addEventListener(
+          "error",
           () => {
-            if (
-              typeof window.gtag ===
-              "function"
-            ) {
-              window.gtag(
-                "event",
-                "checkout_click",
-                {
-                  event_category: "purchase",
-                  event_label:
-                    "Dangote IPO Decoded"
-                }
-              );
-            }
+
+            image.classList.add(
+              "image-error"
+            );
+
+            /*
+             * We deliberately do not replace
+             * the image with an invented URL.
+             * CSS can style .image-error.
+             */
           }
         );
       }
     );
   }
 
-  /* -------------------------------------------------------
-     ACTIVE NAV LINK
-  ------------------------------------------------------- */
-
-  function setupActiveNavigation() {
-    const sections =
-      $$("section[id]");
-
-    const navLinks =
-      $$('a[href^="#"]');
-
-    if (!sections.length) return;
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            const id =
-              entry.target.id;
-
-            navLinks.forEach((link) => {
-              link.classList.toggle(
-                "active",
-                link.getAttribute(
-                  "href"
-                ) === `#${id}`
-              );
-            });
-          });
-        },
-        {
-          rootMargin:
-            "-35% 0px -55% 0px"
-        }
-      );
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-  }
 
   /* -------------------------------------------------------
-     JSON LOADING
-  ------------------------------------------------------- */
-
-  async function loadContent() {
-    try {
-      showLoadingState();
-
-      const response =
-        await fetch(CONTENT_URL, {
-          cache: "no-cache"
-        });
-
-      if (!response.ok) {
-        throw new Error(
-          `Unable to load content.json (${response.status})`
-        );
-      }
-
-      const content =
-        await response.json();
-
-      state.content = content;
-
-      renderSite(content);
-
-      hideLoadingState();
-
-      console.log(
-        "DANGOTE IPO DECODED™ site loaded successfully."
-      );
-    } catch (error) {
-      console.error(error);
-
-      showErrorState(error);
-    }
-  }
-
-  /* -------------------------------------------------------
-     RENDER EVERYTHING
-  ------------------------------------------------------- */
-
-  function renderSite(content) {
-    renderMeta(content);
-    renderHero(content);
-    renderTrust(content);
-
-    /*
-      Bookshelf is intentionally supported here.
-      The HTML section should contain:
-      #bookshelf-grid
-    */
-    renderBookshelf(content);
-
-    renderProblem(content);
-    renderPromise(content);
-    renderDecisionFlow(content);
-    renderDecisionOS(content);
-    renderLearning(content);
-    renderToolkit(content);
-    renderPreview(content);
-    renderAudience(content);
-    renderPhilosophy(content);
-    renderWhy(content);
-    renderAbout(content);
-    renderFAQ(content);
-    renderPurchase(content);
-    renderDisclaimer(content);
-    renderFooter(content);
-
-    const checkout =
-      content.checkout?.url ||
-      content.books?.[0]?.checkout;
-
-    if (checkout) {
-      applyCheckoutLinks(checkout);
-    }
-
-    setupCheckoutTracking();
-  }
-
-  /* -------------------------------------------------------
-     LOADING / ERROR STATES
+     LOADING STATE
   ------------------------------------------------------- */
 
   function showLoadingState() {
@@ -1225,13 +1573,28 @@
     );
   }
 
+
   function hideLoadingState() {
     document.body.classList.remove(
       "content-loading"
     );
+
+    document.body.classList.add(
+      "content-loaded"
+    );
   }
 
+
+  /* -------------------------------------------------------
+     ERROR STATE
+  ------------------------------------------------------- */
+
   function showErrorState(error) {
+    console.error(
+      "Storefront error:",
+      error
+    );
+
     document.body.classList.remove(
       "content-loading"
     );
@@ -1240,47 +1603,199 @@
       "content-error"
     );
 
-    const message =
-      document.createElement("div");
+    const title =
+      $("#hero-title");
 
-    message.className =
-      "site-error-message";
+    const description =
+      $("#hero-description");
 
-    message.innerHTML = `
-      <strong>Something went wrong.</strong>
-      <p>
-        The page content could not be loaded.
-        Please check that <code>content.json</code>
-        is in the correct folder.
-      </p>
-    `;
+    if (title) {
+      title.textContent =
+        "The storefront is loading.";
+    }
 
-    document.body.prepend(message);
+    if (description) {
+      description.textContent =
+        "Please refresh the page and try again.";
+    }
   }
+
 
   /* -------------------------------------------------------
-     INITIALIZE
+     CONTENT LOADING
   ------------------------------------------------------- */
 
-  function init() {
-    setupMobileNavigation();
-    setupSmoothScroll();
-    setupHeaderScroll();
-    setupStickyPurchaseBar();
-    setupImageFallbacks();
-    setupActiveNavigation();
+  async function loadContent() {
+    const response =
+      await fetch(
+        CONTENT_URL,
+        {
+          cache: "no-store"
+        }
+      );
 
-    loadContent();
+    if (!response.ok) {
+      throw new Error(
+        `Unable to load content.json (${response.status})`
+      );
+    }
+
+    const data =
+      await response.json();
+
+    if (
+      !data ||
+      typeof data !== "object"
+    ) {
+      throw new Error(
+        "content.json returned invalid data."
+      );
+    }
+
+    state.content =
+      data;
+
+    return data;
   }
 
+
+  /* -------------------------------------------------------
+     MAIN RENDER
+  ------------------------------------------------------- */
+
+  function renderSite(content) {
+    state.featuredBook =
+      findFeaturedBook();
+
+    state.selectedBook =
+      state.featuredBook;
+
+    renderMeta(
+      content
+    );
+
+    renderHero(
+      content
+    );
+
+    renderFeaturedBook(
+      state.featuredBook
+    );
+
+    renderBookshelf(
+      content
+    );
+
+    renderTrust(
+      content
+    );
+
+    renderAbout(
+      content
+    );
+
+    renderFAQ(
+      content
+    );
+
+    renderFooter(
+      content
+    );
+
+    renderDisclaimer(
+      content
+    );
+
+    if (state.featuredBook) {
+      renderBookDetails(
+        state.featuredBook
+      );
+
+      renderPreview(
+        state.featuredBook
+      );
+
+      updatePurchaseArea(
+        state.featuredBook
+      );
+
+      updateStickyPurchase(
+        state.featuredBook
+      );
+    }
+
+    applyCheckoutLinks();
+
+    setupCheckoutTracking();
+
+    setupImageFallbacks();
+  }
+
+
+  /* -------------------------------------------------------
+     INITIALIZATION
+  ------------------------------------------------------- */
+
+  async function init() {
+    showLoadingState();
+
+    try {
+      const content =
+        await loadContent();
+
+      renderSite(
+        content
+      );
+
+      hideLoadingState();
+
+    } catch (error) {
+      showErrorState(
+        error
+      );
+    }
+  }
+
+
+  /* -------------------------------------------------------
+     GLOBAL UI SETUP
+  ------------------------------------------------------- */
+
+  function setupUI() {
+    setupPrivacyModal();
+
+    setupSmoothScroll();
+
+    setupStickyPurchaseBar();
+
+    setupImageFallbacks();
+  }
+
+
+  /* -------------------------------------------------------
+     START
+  ------------------------------------------------------- */
+
+  function start() {
+    setupUI();
+
+    init();
+  }
+
+
   if (
-    document.readyState === "loading"
+    document.readyState ===
+    "loading"
   ) {
     document.addEventListener(
       "DOMContentLoaded",
-      init
+      start,
+      {
+        once: true
+      }
     );
   } else {
-    init();
+    start();
   }
+
 })();
